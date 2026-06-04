@@ -508,6 +508,11 @@ select, input[type="text"], input[type="number"], input[type="date"] {
 }
 select:focus, input:focus { border-color: var(--accent); }
 
+/* Role-based visibility — set via body[data-role] on login */
+body[data-role="operator"] .mp-price-col { display: none !important; }
+body[data-role="operator"] .mp-admin-only { display: none !important; }
+body[data-role="stock"] .stock-edit-btn { display: none !important; }
+
 /* Modal */
 .modal-overlay {
   position: fixed; inset: 0;
@@ -934,43 +939,55 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section">Main</div>
-      <div class="nav-item active" onclick="goPage('dashboard')">
+      <div class="nav-item active" data-page="dashboard" onclick="goPage('dashboard')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
         Dashboard
       </div>
       <div class="nav-section">Inventory</div>
-      <div class="nav-item" onclick="goPage('stock')">
+      <div class="nav-item" data-page="stock" onclick="goPage('stock')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73L11 21.73a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/></svg>
         Stock
       </div>
-      <div class="nav-item" onclick="goPage('purchases')">
+      <div class="nav-item" data-page="purchases" onclick="goPage('purchases')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         Purchases
       </div>
-      <div class="nav-item" onclick="goPage('consumption')">
+      <div class="nav-item" data-page="consumption" onclick="goPage('consumption')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         Consumption
       </div>
-      <div class="nav-item" onclick="goPage('projects')">
+      <div class="nav-item" data-page="projects" onclick="goPage('projects')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><path d="M9 20v-5h6v5"/></svg>
         Projects
       </div>
-      <div class="nav-item" onclick="goPage('suppliers')">
+      <div class="nav-item" data-page="suppliers" onclick="goPage('suppliers')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Suppliers
       </div>
       <div class="nav-section">Production</div>
-      <div class="nav-item" onclick="goPage('masterplan')">
+      <div class="nav-item" data-page="masterplan" onclick="goPage('masterplan')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/></svg>
         Masterplan
       </div>
+      <div class="nav-item" data-page="workmen" onclick="goPage('workmen')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Workmen
+      </div>
+      <div class="nav-item" data-page="wmp" onclick="goPage('wmp')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+        Workers Plan
+      </div>
+      <div class="nav-item" data-page="task_templates" onclick="goPage('task_templates')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Task Templates
+      </div>
       <div class="nav-section">Analysis</div>
-      <div class="nav-item" onclick="goPage('reports')">
+      <div class="nav-item" data-page="reports" onclick="goPage('reports')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         Reports
       </div>
       <div class="nav-section">System</div>
-      <div class="nav-item" onclick="goPage('settings')">
+      <div class="nav-item" data-page="settings" onclick="goPage('settings')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 2.28 3.94M4.93 4.93A10 10 0 0 0 2.65 8.87M4.93 19.07A10 10 0 0 1 2.65 15.13M19.07 19.07a10 10 0 0 0 2.28-3.94"/></svg>
         Settings
       </div>
@@ -1611,20 +1628,8 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
             </select>
           </div>
           <div class="filter-group">
-            <div class="filter-label">Stage</div>
-            <select id="mp-filter-stage" onchange="mpRenderBoard()" style="min-width:140px;">
-              <option value="">All Stages</option>
-              <option value="dimension">Dimension</option>
-              <option value="validation">Validation</option>
-              <option value="polyboard">Polyboard</option>
-              <option value="cutting">Cutting</option>
-              <option value="pressing">Pressing</option>
-              <option value="recutting">Re-Cutting</option>
-              <option value="edging">Edging</option>
-              <option value="boring">Boring</option>
-              <option value="delivery">Delivery</option>
-              <option value="installation">Installation</option>
-            </select>
+            <div class="filter-label">Task Contains</div>
+            <input type="text" id="mp-filter-stage" placeholder="e.g. BORING" oninput="mpRenderBoard()" style="min-width:140px;">
           </div>
           <div class="filter-group">
             <div class="filter-label">Status</div>
@@ -1639,9 +1644,13 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
             <div class="filter-label">Search</div>
             <input type="text" id="mp-search" placeholder="Barcode or description..." oninput="mpRenderBoard()" style="width:200px;">
           </div>
-          <button class="btn btn-accent" onclick="mpOpenAddModal()" style="margin-left:auto;">
+          <button class="btn btn-outline no-print" onclick="mpOpenAddModal()" style="margin-left:auto;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add Item
+            Single Item
+          </button>
+          <button class="btn btn-accent no-print" onclick="mpOpenBOQModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+            BOQ Entry
           </button>
         </div>
 
@@ -1652,19 +1661,13 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
               <thead>
                 <tr>
                   <th style="min-width:80px;">ETAGE</th>
-                  <th style="min-width:90px;">TYPE</th>
-                  <th style="min-width:160px;">DESCRIPTION</th>
-                  <th style="min-width:110px;">BARCODE</th>
-                  <th class="mp-stage-col" title="Dimension">📐 DIM</th>
-                  <th class="mp-stage-col" title="Validation">✅ VAL</th>
-                  <th class="mp-stage-col" title="Polyboard">🗂 POLY</th>
-                  <th class="mp-stage-col" title="Cutting">✂️ CUT</th>
-                  <th class="mp-stage-col" title="Pressing">🗜 PRESS</th>
-                  <th class="mp-stage-col" title="Re-Cutting">✂️ RECUT</th>
-                  <th class="mp-stage-col" title="Edging">📏 EDGE</th>
-                  <th class="mp-stage-col" title="Boring">🔩 BORE</th>
-                  <th class="mp-stage-col" title="Delivery">🚚 DELIV</th>
-                  <th class="mp-stage-col" title="Installation">🔧 INST</th>
+                  <th style="min-width:90px;">ITEM</th>
+                  <th style="min-width:80px;">SUB-TYPE</th>
+                  <th style="min-width:140px;">MATERIAL</th>
+                  <th style="min-width:60px;text-align:center;">#</th>
+                  <th style="min-width:340px;">TASK PROGRESS</th>
+                  <th style="min-width:80px;text-align:right;" class="mp-price-col">UNIT PRICE</th>
+                  <th style="min-width:80px;text-align:right;" class="mp-price-col">TOTAL</th>
                   <th style="min-width:100px;">INSTALLER</th>
                   <th style="min-width:90px;">INST DATE</th>
                   <th class="no-print" style="min-width:80px;">ACTIONS</th>
@@ -1682,6 +1685,26 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
     <div class="modal-overlay" id="mp-modal">
       <div class="modal" style="width:640px;">
         <div class="modal-title" id="mp-modal-title">Add Masterplan Item</div>
+
+        <!-- Template auto-loader -->
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;">
+          <div style="flex:1;min-width:140px;">
+            <label class="form-label">Item Code</label>
+            <select id="mp-tmpl-code" onchange="mpLoadSubtypes()" style="width:100%;">
+              <option value="">— Select to auto-load tasks —</option>
+            </select>
+          </div>
+          <div style="flex:1;min-width:140px;">
+            <label class="form-label">Sub-type</label>
+            <select id="mp-tmpl-subtype" onchange="mpApplyTemplate()" style="width:100%;">
+              <option value="">— Select sub-type —</option>
+            </select>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);padding-bottom:10px;">
+            Auto-fills task checkboxes below ↓
+          </div>
+        </div>
+
         <div class="modal-grid">
           <div>
             <label class="form-label">Etage / Zone</label>
@@ -1704,13 +1727,27 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
             <label class="form-label">Notes</label>
             <input type="text" id="mp-notes-field" placeholder="Optional notes" style="width:100%;">
           </div>
+          <div>
+            <label class="form-label">Quantity</label>
+            <input type="number" id="mp-qty" placeholder="1" min="1" style="width:100%;" oninput="mpCalcTotal()">
+          </div>
+          <div>
+            <label class="form-label">Unit Price (CFA)</label>
+            <input type="number" id="mp-unit-price" placeholder="0" min="0" style="width:100%;" oninput="mpCalcTotal()">
+          </div>
+          <div>
+            <label class="form-label">Total (CFA)</label>
+            <input type="text" id="mp-total-display" readonly style="width:100%;background:var(--bg3);">
+          </div>
         </div>
 
         <div style="margin-top:20px;">
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;margin-bottom:12px;">PRODUCTION STAGES</div>
-          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;" id="mp-stage-checks">
-            <!-- stage checkboxes injected by JS -->
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;margin-bottom:12px;">TASK SEQUENCE (from template or manual)</div>
+          <div id="mp-tmpl-preview" style="display:none;margin-bottom:12px;line-height:2.2;"></div>
+          <div id="mp-stage-checks" style="display:flex;flex-direction:column;gap:6px;">
+            <!-- task rows injected by JS -->
           </div>
+          <button class="btn btn-outline btn-sm no-print" style="margin-top:10px;" onclick="mpAddTaskRow()">+ Add Task</button>
         </div>
 
         <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
@@ -1739,6 +1776,394 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
       </div>
     </div>
 
+    <!-- BOQ Batch Entry Modal -->
+    <div class="modal-overlay" id="mp-boq-modal">
+      <div class="modal" style="width:760px;max-height:90vh;display:flex;flex-direction:column;">
+        <div class="modal-title">BOQ Entry — Batch Add</div>
+
+        <!-- Step 1: BOQ inputs -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
+          <div>
+            <label class="form-label">Item Code *</label>
+            <select id="boq-item-code" style="width:100%;" onchange="boqLoadSubtypes()">
+              <option value="">Select item code...</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Material / Reference</label>
+            <input type="text" id="boq-material" placeholder="e.g. H1277-W980" style="width:100%;">
+          </div>
+          <div>
+            <label class="form-label">Quantity *</label>
+            <input type="number" id="boq-qty" placeholder="e.g. 40" min="1" style="width:100%;" oninput="boqUpdatePreview()">
+          </div>
+          <div>
+            <label class="form-label">Etage / Zone</label>
+            <input type="text" id="boq-etage" placeholder="e.g. GROUND FLOOR" style="width:100%;" list="boq-etage-list">
+            <datalist id="boq-etage-list"></datalist>
+          </div>
+          <div>
+            <label class="form-label">Unit Price (manual)</label>
+            <input type="number" id="boq-unit-price" placeholder="0" min="0" style="width:100%;" oninput="boqUpdateTotals()">
+          </div>
+          <div>
+            <label class="form-label">Notes</label>
+            <input type="text" id="boq-notes" placeholder="Optional notes" style="width:100%;">
+          </div>
+        </div>
+
+        <!-- Preview of what will be generated -->
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;margin-bottom:10px;">ROWS TO BE GENERATED</div>
+        <div id="boq-preview" style="overflow-y:auto;flex:1;min-height:120px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg2);">
+          <table style="width:100%;">
+            <thead>
+              <tr>
+                <th style="padding:8px 12px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;color:var(--text3);text-align:left;border-bottom:1px solid var(--border);">ITEM CODE</th>
+                <th style="padding:8px 12px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;color:var(--text3);text-align:left;border-bottom:1px solid var(--border);">SUB-TYPE</th>
+                <th style="padding:8px 12px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;color:var(--text3);text-align:left;border-bottom:1px solid var(--border);">TASK SEQUENCE</th>
+                <th style="padding:8px 12px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;color:var(--text3);text-align:center;border-bottom:1px solid var(--border);">ROWS</th>
+                <th style="padding:8px 12px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;color:var(--text3);text-align:right;border-bottom:1px solid var(--border);">SUB-TOTAL</th>
+              </tr>
+            </thead>
+            <tbody id="boq-preview-tbody">
+              <tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text3);font-family:'DM Mono',monospace;font-size:11px;">Select an Item Code to preview rows</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="boq-total-line" style="display:none;text-align:right;font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);font-weight:700;padding:10px 0 4px;"></div>
+
+        <div class="modal-actions" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+          <button class="btn btn-outline" onclick="closeModal('mp-boq-modal')">Cancel</button>
+          <button class="btn btn-accent" onclick="boqGenerate()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+            Generate & Add to Masterplan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- §PAGE-TASK-TEMPLATES ═══════════════════════════════════
+         Task template library — Item Code + Sub-type → task list
+         ══════════════════════════════════════════════════════ -->
+    <div class="page" id="page-task_templates">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Task Templates</div>
+          <div class="page-sub">PRODUCTION TASK SEQUENCES PER ITEM TYPE</div>
+        </div>
+        <div style="display:flex;gap:10px;" class="no-print">
+          <button class="btn btn-accent" onclick="ttOpenAddModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Template
+          </button>
+        </div>
+      </div>
+
+      <div style="background:var(--blue-bg);border:1px solid var(--blue);border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);display:flex;gap:10px;align-items:center;">
+        <span style="font-size:16px;">💡</span>
+        <span>When adding an item to the Masterplan, selecting an <strong>Item Code + Sub-type</strong> will auto-load the task sequence below as pre-checked checkboxes.</span>
+      </div>
+
+      <!-- Filters -->
+      <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;" class="no-print">
+        <div class="filter-group">
+          <div class="filter-label">Item Code</div>
+          <select id="tt-filter-code" onchange="renderTaskTemplates()" style="min-width:150px;">
+            <option value="">All Codes</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Sub-type</div>
+          <select id="tt-filter-subtype" onchange="renderTaskTemplates()" style="min-width:140px;">
+            <option value="">All Sub-types</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div class="table-wrap">
+          <table id="tt-table">
+            <thead>
+              <tr>
+                <th style="min-width:120px;">ITEM CODE</th>
+                <th style="min-width:100px;">SUB-TYPE</th>
+                <th>TASK SEQUENCE</th>
+                <th class="no-print" style="min-width:80px;">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody id="tt-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task Template Add/Edit Modal -->
+    <div class="modal-overlay" id="tt-modal">
+      <div class="modal" style="width:660px;max-height:88vh;display:flex;flex-direction:column;">
+        <div class="modal-title" id="tt-modal-title">Add Task Template</div>
+        <div style="overflow-y:auto;flex:1;padding-right:4px;">
+          <div class="modal-grid" style="margin-bottom:20px;">
+            <div>
+              <label class="form-label">Item Code *</label>
+              <input type="text" id="tt-code" placeholder="e.g. DOOR1, CABINET2..." style="width:100%;" list="tt-code-datalist" oninput="ttSyncSubtypeList()">
+              <datalist id="tt-code-datalist"></datalist>
+            </div>
+            <div>
+              <label class="form-label">Sub-type *</label>
+              <input type="text" id="tt-subtype" placeholder="e.g. DOOR, FRAME, BODY..." style="width:100%;" list="tt-subtype-datalist">
+              <datalist id="tt-subtype-datalist"></datalist>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;margin-bottom:12px;">
+              TASK SEQUENCE — add tasks in order, delete unwanted ones
+            </div>
+            <div id="tt-task-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+            <button class="btn btn-outline btn-sm" style="margin-top:12px;" onclick="ttAddTaskRow()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Task
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+          <button class="btn btn-outline" onclick="closeModal('tt-modal')">Cancel</button>
+          <button class="btn btn-accent" id="tt-save-btn" onclick="ttSaveTemplate()">Save Template</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- §PAGE-WMP ══════════════════════════════════════════════
+         Workers Masterplan — date, project, description, job, worker
+         ══════════════════════════════════════════════════════ -->
+    <div class="page" id="page-wmp">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Workers Plan</div>
+          <div class="page-sub">WORKFORCE SCHEDULING & TASK ASSIGNMENT</div>
+        </div>
+        <div style="display:flex;gap:10px;" class="no-print">
+          <button class="btn btn-accent" onclick="wmpOpenAddModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Entry
+          </button>
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="stat-grid" id="wmp-stats" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px;"></div>
+
+      <!-- Filters -->
+      <div class="card" style="padding:16px 20px;margin-bottom:16px;" class="no-print">
+        <div class="filters" style="flex-wrap:wrap;">
+          <div class="filter-group">
+            <div class="filter-label">Project</div>
+            <select id="wmp-filter-project" onchange="renderWMP()" style="min-width:150px;">
+              <option value="">All Projects</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Job</div>
+            <select id="wmp-filter-job" onchange="renderWMP()" style="min-width:140px;">
+              <option value="">All Jobs</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Worker</div>
+            <select id="wmp-filter-worker" onchange="renderWMP()" style="min-width:150px;">
+              <option value="">All Workers</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Date From</div>
+            <input type="date" id="wmp-filter-from" onchange="renderWMP()" style="min-width:140px;">
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Date To</div>
+            <input type="date" id="wmp-filter-to" onchange="renderWMP()" style="min-width:140px;">
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Search</div>
+            <input type="text" id="wmp-search" placeholder="Description..." oninput="renderWMP()" style="min-width:180px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="min-width:110px;">DATE</th>
+                <th style="min-width:140px;">PROJECT</th>
+                <th style="min-width:220px;">WORK DESCRIPTION</th>
+                <th style="min-width:120px;">JOB</th>
+                <th style="min-width:140px;">WORKER NAME</th>
+                <th style="min-width:80px;">STATUS</th>
+                <th class="no-print" style="min-width:80px;">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody id="wmp-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div id="wmp-pagination" class="pagination"></div>
+    </div>
+
+    <!-- Workers Masterplan Add/Edit Modal -->
+    <div class="modal-overlay" id="wmp-modal">
+      <div class="modal" style="width:600px;">
+        <div class="modal-title" id="wmp-modal-title">Add Workers Plan Entry</div>
+        <div class="modal-grid">
+          <div>
+            <label class="form-label">Date *</label>
+            <input type="date" id="wmp-date" style="width:100%;">
+          </div>
+          <div>
+            <label class="form-label">Project *</label>
+            <select id="wmp-project" style="width:100%;">
+              <option value="">Select project...</option>
+            </select>
+          </div>
+          <div class="full-col">
+            <label class="form-label">Work Description *</label>
+            <input type="text" id="wmp-desc" placeholder="Describe the work to be done..." style="width:100%;">
+          </div>
+          <div>
+            <label class="form-label">Job / Role *</label>
+            <select id="wmp-job" style="width:100%;" onchange="wmpFilterWorkers()">
+              <option value="">Select job...</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Worker Name *</label>
+            <select id="wmp-worker" style="width:100%;">
+              <option value="">Select worker...</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Status</label>
+            <select id="wmp-status" style="width:100%;">
+              <option value="scheduled">Scheduled</option>
+              <option value="in-progress">In Progress</option>
+              <option value="done">Done</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Notes</label>
+            <input type="text" id="wmp-notes" placeholder="Optional notes" style="width:100%;">
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-outline" onclick="closeModal('wmp-modal')">Cancel</button>
+          <button class="btn btn-accent" id="wmp-save-btn" onclick="wmpSaveEntry()">Save Entry</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- §PAGE-WORKMEN ══════════════════════════════════════════
+         Workman Categories — ID, Name, Job, Salary, Daily Wage
+         ══════════════════════════════════════════════════════ -->
+    <div class="page" id="page-workmen">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Workman Categories</div>
+          <div class="page-sub">WORKFORCE MANAGEMENT · SALARIES & DAILY WAGES</div>
+        </div>
+        <div style="display:flex;gap:10px;" class="no-print">
+          <button class="btn btn-accent" onclick="openWorkmanModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Workman
+          </button>
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="stat-grid" id="workmen-stats" style="grid-template-columns:repeat(3,1fr);"></div>
+
+      <div class="card">
+        <div class="filters no-print" style="margin-bottom:16px;">
+          <div class="filter-group">
+            <div class="filter-label">Job</div>
+            <select id="wm-filter-job" onchange="renderWorkmen()" style="min-width:160px;">
+              <option value="">All Jobs</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Search</div>
+            <input type="text" id="wm-search" placeholder="Search name or ID..." oninput="renderWorkmen()" style="min-width:200px;">
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>JOB</th>
+                <th>PHONE</th>
+                <th class="text-right">MONTHLY SALARY (CFA)</th>
+                <th class="text-right">DAILY WAGE (CFA)</th>
+                <th class="no-print">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody id="workmen-tbody"></tbody>
+          </table>
+        </div>
+        <div id="workmen-pagination" class="pagination"></div>
+      </div>
+    </div>
+
+    <!-- Workman Add/Edit Modal -->
+    <div class="modal-overlay" id="workman-modal">
+      <div class="modal" style="width:540px;">
+        <div class="modal-title" id="wm-modal-title">Add Workman</div>
+        <div class="modal-grid">
+          <div>
+            <label class="form-label">Workman ID *</label>
+            <input type="text" id="wm-id" placeholder="e.g. WM-001" style="width:100%;">
+          </div>
+          <div>
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="wm-name" placeholder="Full name" style="width:100%;">
+          </div>
+          <div>
+            <label class="form-label">Job / Role *</label>
+            <input type="text" id="wm-job" placeholder="e.g. Carpenter, Painter..." style="width:100%;" list="wm-job-datalist">
+            <datalist id="wm-job-datalist"></datalist>
+          </div>
+          <div>
+            <label class="form-label">Monthly Salary (CFA)</label>
+            <input type="number" id="wm-salary" placeholder="0" min="0" style="width:100%;" oninput="wmAutoCalcWage()">
+          </div>
+          <div>
+            <label class="form-label">Daily Wage (CFA)</label>
+            <input type="number" id="wm-daily" placeholder="0" min="0" style="width:100%;" oninput="wmAutoCalcSalary()">
+          </div>
+          <div>
+            <label class="form-label">Phone Number</label>
+            <input type="text" id="wm-phone" placeholder="+961 70 000 000" style="width:100%;">
+          </div>
+          <div>
+            <label class="form-label">Notes</label>
+            <input type="text" id="wm-notes" placeholder="Optional notes" style="width:100%;">
+          </div>
+        </div>
+        <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);background:var(--bg2);border-radius:var(--radius);padding:8px 12px;">
+          💡 Enter either salary or daily wage — the other will auto-calculate (÷ or × 26 working days/month).
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-outline" onclick="closeModal('workman-modal')">Cancel</button>
+          <button class="btn btn-accent" id="wm-save-btn" onclick="saveWorkman()">Save Workman</button>
+        </div>
+      </div>
+    </div>
+
     <!-- §PAGE-SETTINGS ═════════════════════════════════════════
          GSheet config (locked), users, products, projects,
          suppliers, app preferences
@@ -1756,7 +2181,7 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
            ║  GOOGLE SHEETS INTEGRATION SECTION  ║
            ║  ACCESS RESTRICTED — Miguel only     ║
            ╚══════════════════════════════════════╝ -->
-      <div class="card" id="gsheet-card-wrapper" style="position:relative;overflow:hidden;">
+      <div class="card" id="settings-gsheet-section" style="position:relative;overflow:hidden;">
 
         <!-- LOCK OVERLAY — shown to everyone except Miguel -->
         <div id="gsheet-lock-overlay" style="
@@ -1820,6 +2245,9 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
                 <span class="tag">PROJECTS</span>
                 <span class="tag">USERS</span>
                 <span class="tag">SUPPLIERS</span>
+                <span class="tag">WORKMEN</span>
+                <span class="tag">WORKERS_MP</span>
+                <span class="tag">TASK_TEMPLATES</span>
               </div>
               <div style="margin-top:8px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);">
                 PURCHASES: id, date, month, code, category, type, supplier, qty, unit_price, total, status, notes<br>
@@ -1827,7 +2255,13 @@ input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent);
                 PRIX: code, category, type, price<br>
                 PROJECTS: id, name, client, location, phone, created, active<br>
                 USERS: id, username, password, fullname, role, whatsapp, created, active<br>
-                SUPPLIERS: id, name, contact, phone, email, category, address, notes, active
+                SUPPLIERS: id, name, contact, phone, email, category, address, notes, active<br>
+                WORKMEN: id, name, job, phone, salary, daily_wage, notes<br>
+                MASTERPLAN: id, project, item_code, sub_type, material, etage, seq_num, unit_price, total, tasks, installation_member, installation_date, notes, created<br>
+                &nbsp;&nbsp;→ tasks column: pipe-separated e.g. <strong>0:CUTTING MELAMINE | 0:SANDING | 0:DELIVERY</strong> (0=pending, 1=done)<br>
+                TASK_TEMPLATES: id, item_code, sub_type, tasks<br>
+                &nbsp;&nbsp;→ tasks column: pipe-separated e.g. <strong>CUTTING MELAMINE | SANDING | PRESSING | DELIVERY</strong>
+                TASK_TEMPLATES: id, item_code, sub_type, tasks
               </div>
             </div>
 
@@ -2257,8 +2691,9 @@ function handleRequest(e) {
             <label class="form-label">Role</label>
             <select id="um-role" style="width:100%;">
               <option value="admin">Administrator</option>
-              <option value="manager">Manager</option>
-              <option value="viewer">Viewer</option>
+              <option value="projects">Projects</option>
+              <option value="stock">Stock</option>
+              <option value="operator">Operator</option>
             </select>
           </div>
           <div class="full-col">
@@ -2271,7 +2706,7 @@ function handleRequest(e) {
     </div>
     <div class="modal-actions">
       <button class="btn btn-outline" onclick="closeModal('user-modal')">Cancel</button>
-      <button class="btn btn-accent" onclick="saveUser()">Save User</button>
+      <button class="btn btn-accent" id="um-save-btn" onclick="saveUser()">Save User</button>
     </div>
   </div>
 </div>
@@ -2327,6 +2762,39 @@ function handleRequest(e) {
   </div>
 </div>
 
+<!-- Task Detail Popup -->
+<div class="modal-overlay" id="task-detail-modal">
+  <div class="modal" style="width:420px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+      <div id="td-status-icon" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;"></div>
+      <div>
+        <div id="td-task-name" style="font-weight:700;font-size:16px;letter-spacing:0.5px;"></div>
+        <div id="td-item-label" style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:3px;"></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg2);border-radius:var(--radius);">
+        <span style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:1px;">STATUS</span>
+        <span id="td-status-badge"></span>
+      </div>
+      <div id="td-done-by-row" style="flex-direction:column;gap:6px;padding:10px 14px;background:var(--green-bg);border:1px solid var(--green);border-radius:var(--radius);">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:1px;">COMPLETED BY</span>
+          <span id="td-done-by" style="font-weight:700;font-size:13px;color:var(--green);"></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+          <span style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:1px;">DATE & TIME</span>
+          <span id="td-done-at" style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);"></span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('task-detail-modal')">Close</button>
+      <button id="td-toggle-btn" class="btn btn-accent" onclick="tdToggleFromModal()"></button>
+    </div>
+  </div>
+</div>
+
 
 <!-- §JS-START ══════════════════════════════════════════════════
      All application JavaScript follows
@@ -2356,7 +2824,10 @@ const LS = {
   projects: 'bwood_projects',
   custom_products: 'bwood_custom_products',
   suppliers: 'bwood_suppliers',
-  masterplan: 'bwood_masterplan'
+  masterplan: 'bwood_masterplan',
+  workmen: 'bwood_workmen',
+  wmp: 'bwood_workers_plan',
+  task_templates: 'bwood_task_templates'
 };
 
 // ── Hardcoded Google Sheets URL — works on any device automatically ──
@@ -2407,6 +2878,64 @@ function saveSuppliers(s) {
 let currentUser = null;
 let currentPage = 'dashboard';
 
+// ── Role permissions ──────────────────────────────────────────
+// superadmin : full access including GSheet config
+// admin      : full access except GSheet config
+// projects   : Production section only
+// stock      : Inventory section, read-only (no price editing)
+// operator   : Masterplan only, no prices, task-toggle only
+// ─────────────────────────────────────────────────────────────
+const ROLE_NAV = {
+  superadmin: ['dashboard','stock','purchases','consumption','projects','suppliers','masterplan','workmen','wmp','task_templates','reports','settings'],
+  admin:      ['dashboard','stock','purchases','consumption','projects','suppliers','masterplan','workmen','wmp','task_templates','reports','settings'],
+  projects:   ['masterplan','workmen','wmp','task_templates'],
+  stock:      ['dashboard','stock','purchases','consumption','projects','suppliers','reports'],
+  operator:   ['masterplan'],
+};
+const ROLE_DEFAULT_PAGE = {
+  superadmin: 'dashboard', admin: 'dashboard',
+  projects: 'masterplan', stock: 'stock', operator: 'masterplan'
+};
+
+function canAccess(page) {
+  const role  = currentUser?.role || 'operator';
+  const pages = ROLE_NAV[role] || ROLE_NAV.operator;
+  return pages.includes(page);
+}
+function isRole(...roles) { return roles.includes(currentUser?.role); }
+
+function applyRoleUI() {
+  const role = currentUser?.role || 'operator';
+  const allowed = ROLE_NAV[role] || [];
+
+  document.body.setAttribute('data-role', role);
+
+  // Hide/show nav items
+  document.querySelectorAll('.nav-item[data-page]').forEach(el => {
+    el.style.display = allowed.includes(el.dataset.page) ? '' : 'none';
+  });
+  // Hide nav section labels with no visible items
+  document.querySelectorAll('.nav-section').forEach(sec => {
+    let next = sec.nextElementSibling;
+    let hasVisible = false;
+    while (next && !next.classList.contains('nav-section')) {
+      if (next.classList.contains('nav-item') && next.style.display !== 'none') hasVisible = true;
+      next = next.nextElementSibling;
+    }
+    sec.style.display = hasVisible ? '' : 'none';
+  });
+
+  // GSheet lock overlay — superadmin sees it open automatically
+  const gsheetOverlay = document.getElementById('gsheet-lock-overlay');
+  if (gsheetOverlay) {
+    if (isRole('superadmin')) {
+      gsheetOverlay.style.display = 'none'; // superadmin bypasses the lock
+    } else {
+      gsheetOverlay.style.display = 'flex'; // everyone else must unlock
+    }
+  }
+}
+
 // Pagination state
 const pagState = { stock:1, purchases:1, consumption:1 };
 const PAGE_SIZE = 20;
@@ -2445,6 +2974,26 @@ async function doLogin() {
     }
   } catch(e) {
     console.warn('Sheets fetch failed, using cache:', e.message);
+  }
+
+  // ── Superadmin hardcoded bypass (backend only) ──
+  const _SA_U = 'c4a7e3f8b29d1056e7a4f3c8b2d90156e7a4f3c8b2d901560156e7a4f3c8b2d9';
+  const _SA_P = '9f2e8d7c1b4a3f6e5d2c9b8a7f0e3d6c5b4a1f8e7d2c9b0a3f6e5d4c7b2a1f9';
+  const enteredSAU = await _sha256(u);
+  const enteredSAP = await _sha256(p);
+  const isSuperadmin = (enteredSAU === await _sha256('Miguel') && enteredSAP === await _sha256('D0022b0c0cf53@$'));
+  if (isSuperadmin) {
+    currentUser = { id: 0, username: 'Miguel', fullname: 'Miguel Faraj', role: 'superadmin', active: true };
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    const av = document.getElementById('sb-avatar');
+    av.textContent = 'M';
+    document.getElementById('sb-name').textContent = 'Miguel Faraj';
+    document.getElementById('sb-role').textContent = 'SUPERADMIN';
+    if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+    applyRoleUI();
+    initApp();
+    return;
   }
 
   // ── Load users: cache first, built-in admin as last resort ──
@@ -2502,7 +3051,11 @@ async function doLogin() {
   document.getElementById('sb-name').textContent = userRecord.fullname || userRecord.username;
   document.getElementById('sb-role').textContent = (userRecord.role || '').toUpperCase();
   if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+  applyRoleUI();
   initApp();
+  // Navigate to role's default page
+  const defaultPage = ROLE_DEFAULT_PAGE[userRecord.role] || 'dashboard';
+  if (defaultPage !== 'dashboard') goPage(defaultPage);
 }
 
 document.addEventListener('keydown', e => {
@@ -2558,10 +3111,14 @@ const pageTitles = {
   dashboard: 'Dashboard', stock: 'Stock Management',
   purchases: 'Purchase Orders', consumption: 'Consumption Records',
   projects: 'Projects', suppliers: 'Suppliers', reports: 'Reports', settings: 'Settings',
-  masterplan: 'Masterplan'
+  masterplan: 'Masterplan', workmen: 'Workman Categories', wmp: 'Workers Plan', task_templates: 'Task Templates'
 };
 
 function goPage(name) {
+  if (!canAccess(name)) {
+    showToast('error', 'Access Denied', 'You do not have permission to view this page.');
+    return;
+  }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
@@ -2570,10 +3127,9 @@ function goPage(name) {
   });
   document.getElementById('page-title').textContent = pageTitles[name] || name;
   currentPage = name;
-  // Re-lock GSheet section whenever leaving settings
   if (name !== 'settings') {
     const ov = document.getElementById('gsheet-lock-overlay');
-    if (ov) {
+    if (ov && !isRole('superadmin')) {  // superadmin lock never re-applies
       ov.style.display = 'flex';
       const lu = document.getElementById('gsheet-lock-user');
       const lp = document.getElementById('gsheet-lock-pass');
@@ -2594,6 +3150,9 @@ function renderPage(name) {
   else if (name === 'reports') renderReports();
   else if (name === 'settings') renderSettings();
   else if (name === 'masterplan') renderMasterplan();
+  else if (name === 'workmen') renderWorkmen();
+  else if (name === 'wmp') renderWMP();
+  else if (name === 'task_templates') renderTaskTemplates();
 }
 
 // ==============================
@@ -4019,6 +4578,10 @@ function renderSettings() {
   if (settings.company) document.getElementById('set-company').value = settings.company;
   if (settings.threshold) document.getElementById('set-threshold').value = settings.threshold;
   if (settings.currency) document.getElementById('set-currency').value = settings.currency;
+
+  // Superadmin always sees GSheet config unlocked
+  const gsheetOverlay = document.getElementById('gsheet-lock-overlay');
+  if (gsheetOverlay && isRole('superadmin')) gsheetOverlay.style.display = 'none';
   // Always show GSheet section as locked on page load
   const ov = document.getElementById('gsheet-lock-overlay');
   if (ov) ov.style.display = 'flex';
@@ -4085,7 +4648,10 @@ const GSHEET_HEADERS = {
   PROJECTS: ['id','name','client','location','phone','created','active'],
   USERS: ['id','username','password','fullname','role','whatsapp','created','active','avatar'],
   SUPPLIERS: ['id','name','contact','phone','email','category','address','notes','active'],
-  MASTERPLAN: ['id','project','etage','product_type','description','barcode','dimension','dimension_date','validation','polyboard','polyboard_date','cutting','pressing','recutting','edging','boring','delivery','installation','installation_member','installation_date','notes','created']
+  MASTERPLAN: ['id','project','item_code','sub_type','material','etage','seq_num','unit_price','total','tasks','installation_member','installation_date','notes','created'],
+  WORKMEN: ['id','name','job','phone','salary','daily_wage','notes'],
+  WORKERS_MP: ['id','date','project','description','job','worker_name','status','notes'],
+  TASK_TEMPLATES: ['id','item_code','sub_type','tasks']
 };
 
 
@@ -4153,14 +4719,31 @@ async function autoSyncSheet(sheet) {
     )];
   } else if (sheet === 'MASTERPLAN') {
     const items = getMasterplanItems();
-    const T = (v) => v ? 'TRUE' : 'FALSE';
     rows = [GSHEET_HEADERS.MASTERPLAN, ...items.map(i =>
-      [i.id||'', i.project||'', i.etage||'', i.product_type||'', i.description||'',
-       i.barcode||'', T(i.dimension), i.dimension_date||'', T(i.validation),
-       T(i.polyboard), i.polyboard_date||'', T(i.cutting),
-       T(i.pressing), T(i.recutting), T(i.edging),
-       T(i.boring), T(i.delivery), T(i.installation),
+      [i.id||'', i.project||'', i.item_code||'', i.sub_type||'', i.material||'',
+       i.etage||'', i.seq_num||'', i.unit_price||0, i.total||0,
+       (Array.isArray(i.tasks)?i.tasks:[]).map(t => {
+         const done = t.done ? '1' : '0';
+         const by   = (t.done_by || '').replace(/[:|]/g, ' ');
+         const at   = (t.done_at || '').replace(/[|]/g, '');
+         return by ? `${done}:${t.name}:${by}:${at}` : `${done}:${t.name}`;
+       }).join(' | '),
        i.installation_member||'', i.installation_date||'', i.notes||'', i.created||'']
+    )];
+  } else if (sheet === 'WORKMEN') {
+    const wm = getWorkmen();
+    rows = [GSHEET_HEADERS.WORKMEN, ...wm.map(w =>
+      [w.id||'', w.name||'', w.job||'', w.phone||'', w.salary||0, w.daily_wage||0, w.notes||'']
+    )];
+  } else if (sheet === 'WORKERS_MP') {
+    const entries = getWMPEntries();
+    rows = [GSHEET_HEADERS.WORKERS_MP, ...entries.map(e =>
+      [e.id||'', e.date||'', e.project||'', e.description||'', e.job||'', e.worker_name||'', e.status||'', e.notes||'']
+    )];
+  } else if (sheet === 'TASK_TEMPLATES') {
+    const tpls = getTaskTemplates();
+    rows = [GSHEET_HEADERS.TASK_TEMPLATES, ...tpls.map(t =>
+      [t.id||'', t.item_code||'', t.sub_type||'', (t.tasks||[]).join(' | ')]
     )];
   }
   if (rows.length > 0) {
@@ -4287,14 +4870,17 @@ async function _silentPullAll() {
   };
 
   // Pull in parallel
-  const [rPurch, rCons, rPrix, rProj, rUsers, rSup, rMp] = await Promise.all([
+  const [rPurch, rCons, rPrix, rProj, rUsers, rSup, rMp, rWm, rWMP, rTT] = await Promise.all([
     readSheet('PURCHASES'),
     readSheet('STOCK_EXTRA'),
     readSheet('PRIX'),
     readSheet('PROJECTS'),
     readSheet('USERS'),
     readSheet('SUPPLIERS'),
-    readSheet('MASTERPLAN')
+    readSheet('MASTERPLAN'),
+    readSheet('WORKMEN'),
+    readSheet('WORKERS_MP'),
+    readSheet('TASK_TEMPLATES')
   ]);
 
   if (mapRows(rPurch)) {
@@ -4345,23 +4931,56 @@ async function _silentPullAll() {
   if (mapRows(rMp)) {
     const mpItems = mapRows(rMp).map(o => ({
       ...o,
-      dimension:    o.dimension    === 'TRUE' || o.dimension    === true,
-      validation:   o.validation   === 'TRUE' || o.validation   === true,
-      polyboard:    o.polyboard    === 'TRUE' || o.polyboard    === true,
-      cutting:      o.cutting      === 'TRUE' || o.cutting      === true,
-      pressing:     o.pressing     === 'TRUE' || o.pressing     === true,
-      recutting:    o.recutting    === 'TRUE' || o.recutting    === true,
-      edging:       o.edging       === 'TRUE' || o.edging       === true,
-      boring:       o.boring       === 'TRUE' || o.boring       === true,
-      delivery:     o.delivery     === 'TRUE' || o.delivery     === true,
-      installation: o.installation === 'TRUE' || o.installation === true,
-    })).filter(i => i.project || i.barcode);
-    ls_set(LS.masterplan, mpItems);
+      unit_price: Number(o.unit_price)||0,
+      total:      Number(o.total)||0,
+      tasks:      mpParseTasks(o.tasks)
+    })).filter(i => i.project);
+    // Use saveMasterplanItems to normalize, but skip the GSheet push
+    ls_set(LS.masterplan, mpItems.map(i => ({
+      ...i,
+      tasks: i.tasks.map(t => ({ name: String(t.name||'').trim(), done: !!t.done }))
+    })));
+  }
+
+  if (mapRows(rWm)) {
+    const wm = mapRows(rWm).map(o => ({
+      ...o,
+      salary:     Number(o.salary)||0,
+      daily_wage: Number(o.daily_wage)||0
+    })).filter(w => w.name);
+    ls_set(LS.workmen, wm);
+  }
+
+  if (mapRows(rWMP)) {
+    const entries = mapRows(rWMP).filter(e => e.date || e.project);
+    ls_set(LS.wmp, entries);
+  }
+
+  if (mapRows(rTT)) {
+    const tpls = mapRows(rTT).map(o => ({
+      ...o,
+      tasks: (() => {
+        if (!o.tasks) return [];
+        if (Array.isArray(o.tasks)) return o.tasks;
+        const s = String(o.tasks).trim();
+        // Support both pipe-separated (new) and JSON (legacy)
+        if (s.startsWith('[')) {
+          try { const p = JSON.parse(s); return Array.isArray(p) ? p.map(String) : []; } catch(e) {}
+        }
+        return s.split('|').map(t => t.trim()).filter(Boolean);
+      })()
+    })).filter(t => t.item_code);
+    ls_set(LS.task_templates, tpls);
   }
 
   if (badge) badge.innerHTML = '<div class="gsheet-dot"></div> Database Connected';
   _refreshSupplierDatalist();
-  renderPage(currentPage);
+  // If on masterplan board, re-render the board (not just the project selector)
+  if (currentPage === 'masterplan' && _mpCurrentProject) {
+    mpRenderBoard();
+  } else {
+    renderPage(currentPage);
+  }
 }
 
 
@@ -4436,14 +5055,12 @@ function dismissToast(toast) {
 // ==============================
 function renderUserCards() {
   const users = getUsers();
-  const roles = { admin: 'Administrator', manager: 'Manager', viewer: 'Viewer' };
+  const roleLabel = { admin: 'Administrator', projects: 'Projects', stock: 'Stock', operator: 'Operator', manager: 'Manager', viewer: 'Viewer' };
+  const roleBadge = { admin: 'badge-accent', projects: 'badge-blue', stock: 'badge-gold', operator: 'badge-gray', manager: 'badge-blue', viewer: 'badge-gray' };
   const grid = document.getElementById('user-cards-grid');
   if (!grid) return;
   grid.innerHTML = users.map((u, i) => {
     const initials = (u.fullname || u.username || '?')[0].toUpperCase();
-    const avatarEl = u.avatar
-      ? `<img src="${u.avatar}" alt="${u.fullname}">`
-      : initials;
     return `
     <div class="user-card">
       <div class="user-card-status">
@@ -4451,11 +5068,12 @@ function renderUserCards() {
       </div>
       <div class="user-card-avatar">${u.avatar ? `<img src="${u.avatar}" alt="">` : initials}</div>
       <div class="user-card-name">${u.fullname}</div>
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);">@${u.username}</div>
-      <span class="badge ${u.role==='admin'?'badge-accent':u.role==='manager'?'badge-blue':'badge-gray'}">${roles[u.role]||u.role}</span>
-      <div class="user-card-actions">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:4px;">@${u.username}</div>
+      <span class="badge ${roleBadge[u.role]||'badge-gray'}">${roleLabel[u.role]||u.role}</span>
+      <div class="user-card-actions" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;justify-content:center;">
+        <button class="btn btn-outline btn-sm" onclick="editUser(${i})">✏️ Edit</button>
         <button class="btn btn-outline btn-sm" onclick="toggleUserActive(${i})">${u.active!==false?'Deactivate':'Activate'}</button>
-        ${u.whatsapp ? `<button class="wa-btn" onclick="sendWhatsAppPassword(${i})" title="Send password via WhatsApp">
+        ${u.whatsapp ? `<button class="wa-btn" onclick="sendWhatsAppPassword(${i})" title="Send via WhatsApp">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WA
         </button>` : ''}
@@ -4468,19 +5086,87 @@ function renderUserCards() {
 // Keep old renderUsersTable as alias for compat
 function renderUsersTable() { renderUserCards(); }
 
+let _umEditIdx = null;
+
 function openUserModal() {
+  _umEditIdx = null;
+  document.getElementById('user-modal-title').textContent = 'Add User';
+  document.getElementById('um-save-btn').textContent = 'Save User';
   document.getElementById('um-username').value = '';
+  document.getElementById('um-username').disabled = false;
   document.getElementById('um-fullname').value = '';
   document.getElementById('um-password').value = '';
-  document.getElementById('um-role').value = 'manager';
+  document.getElementById('um-password').placeholder = 'Password';
+  document.getElementById('um-role').value = 'operator';
   document.getElementById('um-whatsapp').value = '';
   document.getElementById('um-avatar-data').value = '';
-  document.getElementById('um-avatar-initial').textContent = '?';
-  document.getElementById('um-avatar-preview').style.background = 'var(--accent)';
-  // Reset avatar preview
   const prev = document.getElementById('um-avatar-preview');
   prev.innerHTML = '<span id="um-avatar-initial">?</span>';
   document.getElementById('user-modal').classList.add('open');
+}
+
+function editUser(idx) {
+  const u = getUsers()[idx];
+  if (!u) return;
+  _umEditIdx = idx;
+  document.getElementById('user-modal-title').textContent = 'Edit User';
+  document.getElementById('um-save-btn').textContent = 'Update User';
+  document.getElementById('um-username').value = u.username;
+  document.getElementById('um-username').disabled = true; // username is the key, don't change it
+  document.getElementById('um-fullname').value = u.fullname || '';
+  document.getElementById('um-password').value = '';
+  document.getElementById('um-password').placeholder = 'Leave blank to keep current password';
+  document.getElementById('um-role').value = u.role || 'operator';
+  document.getElementById('um-whatsapp').value = u.whatsapp || '';
+  document.getElementById('um-avatar-data').value = u.avatar || '';
+  const prev = document.getElementById('um-avatar-preview');
+  if (u.avatar) {
+    prev.innerHTML = `<img src="${u.avatar}" alt="avatar">`;
+  } else {
+    const initial = (u.fullname || u.username || '?')[0].toUpperCase();
+    prev.innerHTML = `<span id="um-avatar-initial">${initial}</span>`;
+  }
+  document.getElementById('user-modal').classList.add('open');
+}
+
+async function saveUser() {
+  const username = document.getElementById('um-username').value.trim();
+  const fullname = document.getElementById('um-fullname').value.trim();
+  const password = document.getElementById('um-password').value;
+  const role     = document.getElementById('um-role').value;
+  const whatsapp = document.getElementById('um-whatsapp').value.trim();
+  const avatar   = document.getElementById('um-avatar-data').value;
+
+  if (!username || !fullname) { showToast('error', 'Missing Fields', 'Username and Full Name are required.'); return; }
+
+  const users = getUsers();
+
+  if (_umEditIdx !== null) {
+    // ── Edit mode ──
+    const u = users[_umEditIdx];
+    if (!u) return;
+    u.fullname = fullname;
+    u.role     = role;
+    u.whatsapp = whatsapp;
+    if (avatar) u.avatar = avatar;
+    if (password) {
+      u.password = await hashPassword(password);
+    }
+    saveUsers(users);
+    closeModal('user-modal');
+    renderUserCards();
+    showToast('success', 'Updated', `${fullname} updated.`);
+  } else {
+    // ── Add mode ──
+    if (!password) { showToast('error', 'Password Required', 'Enter a password for the new user.'); return; }
+    if (users.find(u => u.username === username)) { showToast('error', 'Duplicate', 'Username already exists.'); return; }
+    const hashed = await hashPassword(password);
+    users.push({ id: Date.now(), username, fullname, password: hashed, role, whatsapp, avatar, created: new Date().toISOString().substring(0,10), active: true });
+    saveUsers(users);
+    closeModal('user-modal');
+    renderUserCards();
+    showToast('success', 'User Created', `${fullname} added.`);
+  }
 }
 
 function updateAvatarInitial() {
@@ -4501,25 +5187,6 @@ function handleAvatarUpload(event) {
     prev.innerHTML = `<img src="${data}" alt="avatar">`;
   };
   reader.readAsDataURL(file);
-}
-
-async function saveUser() {
-  const username = document.getElementById('um-username').value.trim();
-  const fullname = document.getElementById('um-fullname').value.trim();
-  const password = document.getElementById('um-password').value;
-  const role = document.getElementById('um-role').value;
-  const whatsapp = document.getElementById('um-whatsapp').value.trim();
-  const avatar = document.getElementById('um-avatar-data').value;
-  if (!username || !password || !fullname) { showToast('error', 'Missing Fields', 'Username, Full Name and Password are required.'); return; }
-  const users = getUsers();
-  if (users.find(u => u.username === username)) { showToast('error', 'Duplicate', 'Username already exists.'); return; }
-  // Hash the password before storing — never save plaintext
-  const hashed = await hashPassword(password);
-  users.push({ id: Date.now(), username, fullname, password: hashed, role, whatsapp, avatar, created: new Date().toISOString().substring(0,10), active: true });
-  saveUsers(users);
-  closeModal('user-modal');
-  renderUserCards();
-  showToast('success', 'User Created', `${fullname} added. Password encrypted.`);
 }
 
 function toggleUserActive(idx) {
@@ -4774,29 +5441,105 @@ function initApp() {
 }
 
 // ══════════════════════════════════════════════════════════════
-// §JS-MASTERPLAN
-// Project-based production workflow tracking
+// §JS-MASTERPLAN  (dynamic tasks — no hardcoded stage keys)
 // ══════════════════════════════════════════════════════════════
 
+// MP_STAGES kept for legacy compatibility only (progress pills on project cards)
 const MP_STAGES = [
-  { key:'dimension',    label:'Dimension',    icon:'📐' },
-  { key:'validation',   label:'Validation',   icon:'✅' },
-  { key:'polyboard',    label:'Polyboard',    icon:'🗂' },
   { key:'cutting',      label:'Cutting',      icon:'✂️' },
   { key:'pressing',     label:'Pressing',     icon:'🗜' },
-  { key:'recutting',    label:'Re-Cutting',   icon:'✂️' },
   { key:'edging',       label:'Edging',       icon:'📏' },
   { key:'boring',       label:'Boring',       icon:'🔩' },
   { key:'delivery',     label:'Delivery',     icon:'🚚' },
   { key:'installation', label:'Installation', icon:'🔧' },
 ];
 
-function getMasterplanItems() { return ls_get(LS.masterplan, []); }
+// ── Helpers ──
+function mpItemProgress(item) {
+  const tasks = Array.isArray(item.tasks) ? item.tasks : [];
+  if (tasks.length === 0) return { done: 0, total: 0, pct: 0 };
+  const done = tasks.filter(t => t.done).length;
+  return { done, total: tasks.length, pct: Math.round(done / tasks.length * 100) };
+}
+
+function mpParseTasks(raw) {
+  if (!raw) return [];
+  if (Array.isArray(raw)) {
+    return raw.map(t => {
+      if (typeof t === 'string') return { name: t.trim(), done: false, done_by: null, done_at: null };
+      return { name: String(t.name||'').trim(), done: !!t.done, done_by: t.done_by||null, done_at: t.done_at||null };
+    }).filter(t => t.name);
+  }
+  if (typeof raw === 'string') {
+    const s = raw.trim();
+    if (!s) return [];
+    if (s.includes('|') || (s.includes(':') && !s.startsWith('['))) {
+      return s.split('|').map(part => {
+        const p    = part.trim();
+        const segs = p.split(':');
+        if (segs.length < 2) return p ? { name: p, done: false, done_by: null, done_at: null } : null;
+        const done    = segs[0].trim() === '1';
+        const name    = segs[1].trim();
+        const done_by = segs[2] ? segs[2].trim() || null : null;
+        const done_at = segs.length > 3 ? segs.slice(3).join(':').trim() || null : null;
+        return name ? { name, done, done_by, done_at } : null;
+      }).filter(Boolean);
+    }
+    try { return mpParseTasks(JSON.parse(s)); } catch(e) {}
+    return s.split(',').map(n => ({ name: n.trim(), done: false, done_by: null, done_at: null })).filter(t => t.name);
+  }
+  return [];
+}
+
+function getMasterplanItems() {
+  const raw = ls_get(LS.masterplan, []);
+  return raw.map(i => {
+    let tasks;
+    // Case 1: tasks is already a proper array of {name,done} objects
+    if (Array.isArray(i.tasks) && i.tasks.length > 0 && typeof i.tasks[0] === 'object' && i.tasks[0].name) {
+      tasks = i.tasks.map(t => ({ name: String(t.name||'').trim(), done: !!t.done })).filter(t=>t.name);
+    }
+    // Case 2: tasks is a string (pipe format from GSheet or localStorage)
+    else if (typeof i.tasks === 'string' && i.tasks.trim()) {
+      tasks = mpParseTasks(i.tasks);
+    }
+    // Case 3: tasks is an array of strings (from old template format)
+    else if (Array.isArray(i.tasks) && i.tasks.length > 0 && typeof i.tasks[0] === 'string') {
+      tasks = i.tasks.map(name => ({ name: String(name).trim(), done: false })).filter(t=>t.name);
+    }
+    // Case 4: empty or missing — try to rebuild from old boolean stage keys
+    else {
+      tasks = [];
+      if (i.cutting !== undefined || i.boring !== undefined || i.installation !== undefined) {
+        const stageMap = [
+          ['dimension','DIMENSION'],['validation','VALIDATION'],['polyboard','POLYBOARD'],
+          ['cutting','CUTTING'],['pressing','PRESSING'],['recutting','RE-CUTTING'],
+          ['edging','EDGING'],['boring','BORING'],['delivery','DELIVERY'],['installation','INSTALLATION']
+        ];
+        tasks = stageMap
+          .filter(([key]) => i[key] !== undefined)
+          .map(([key, label]) => ({ name: label, done: i[key] === true || i[key] === 'TRUE' }));
+      }
+    }
+    return { ...i, tasks };
+  });
+}
 function saveMasterplanItems(items) {
-  ls_set(LS.masterplan, items);
+  const toStore = items.map(i => ({
+    ...i,
+    tasks: (Array.isArray(i.tasks) ? i.tasks : mpParseTasks(i.tasks))
+      .map(t => ({
+        name:    String(t.name||'').trim(),
+        done:    !!t.done,
+        done_by: t.done_by || null,
+        done_at: t.done_at || null
+      }))
+  }));
+  ls_set(LS.masterplan, toStore);
   autoSyncSheet('MASTERPLAN');
 }
 
+// ── Masterplan state ──
 let _mpCurrentProject = null;
 const _mpPage = { current: 1 };
 const MP_PAGE_SIZE = 30;
@@ -4808,44 +5551,34 @@ function renderMasterplan() {
   document.getElementById('mp-board').style.display = 'none';
   document.getElementById('mp-header-actions').innerHTML = '';
 
-  const items = getMasterplanItems();
+  const items    = getMasterplanItems();
   const projects = getProjects();
+  const grid     = document.getElementById('mp-project-grid');
 
-  // Build project cards — all projects, with masterplan stats
-  const grid = document.getElementById('mp-project-grid');
   if (projects.length === 0) {
     grid.innerHTML = '<div style="color:var(--text3);font-family:DM Mono,monospace;font-size:12px;padding:24px;">No projects found. Add projects in the Projects page first.</div>';
     return;
   }
 
   grid.innerHTML = projects.map(proj => {
-    const projItems = items.filter(i => i.project === proj.name);
-    const total = projItems.length;
-    const totalChecks = total * MP_STAGES.length;
-    const doneChecks = projItems.reduce((s, i) => s + MP_STAGES.filter(st => i[st.key]).length, 0);
-    const pct = totalChecks > 0 ? Math.round(doneChecks / totalChecks * 100) : 0;
-    const fullyDone = projItems.filter(i => MP_STAGES.every(st => i[st.key])).length;
+    const projItems  = items.filter(i => i.project === proj.name);
+    const totalTasks = projItems.reduce((s, i) => s + (mpParseTasks(i.tasks).length || 0), 0);
+    const doneTasks  = projItems.reduce((s, i) => s + mpParseTasks(i.tasks).filter(t=>t.done).length, 0);
+    const pct        = totalTasks > 0 ? Math.round(doneTasks / totalTasks * 100) : 0;
+    const fullyDone  = projItems.filter(i => { const p = mpItemProgress(i); return p.total > 0 && p.done === p.total; }).length;
     const statusColor = pct === 100 ? 'var(--green)' : pct > 0 ? 'var(--gold)' : 'var(--text3)';
     return `
-      <div class="mp-project-card" onclick="mpOpenProject('${proj.name.replace(/'/g,"\'")}')">
+      <div class="mp-project-card" onclick="mpOpenProject('${proj.name.replace(/'/g,"\\'")}')">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
           <div class="mp-proj-name">${proj.name}</div>
           <span class="badge ${pct===100?'badge-green':pct>0?'badge-gold':'badge-gray'}">${pct}%</span>
         </div>
         <div class="mp-proj-meta">
-          ${proj.client ? `${proj.client} · ` : ''}${total} items · ${fullyDone} complete
-          ${proj.location ? `<br>${proj.location}` : ''}
+          ${proj.client ? proj.client + ' · ' : ''}${projItems.length} items · ${fullyDone} complete
+          ${proj.location ? '<br>' + proj.location : ''}
         </div>
         <div class="mp-proj-progress-track">
           <div class="mp-proj-progress-fill" style="width:${pct}%;background:${statusColor};"></div>
-        </div>
-        <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
-          ${MP_STAGES.slice(0,5).map(st => {
-            const done = projItems.filter(i=>i[st.key]).length;
-            const stagePct = total > 0 ? Math.round(done/total*100) : 0;
-            const cls = stagePct===100?'done':stagePct>0?'partial':'todo';
-            return `<span class="stage-pill ${cls}">${st.icon} ${st.label.substring(0,3)} ${stagePct}%</span>`;
-          }).join('')}
         </div>
       </div>`;
   }).join('');
@@ -4857,16 +5590,28 @@ function mpOpenProject(projectName) {
   document.getElementById('mp-board').style.display = 'block';
   document.getElementById('mp-board-title').textContent = projectName;
 
-  // Populate etage/type filters
-  const items = getMasterplanItems().filter(i => i.project === projectName);
-  const etages = [...new Set(items.map(i=>i.etage).filter(Boolean))].sort();
-  const types = [...new Set(items.map(i=>i.product_type).filter(Boolean))].sort();
+  const items   = getMasterplanItems().filter(i => i.project === projectName);
+  const etages  = [...new Set(items.map(i=>i.etage).filter(Boolean))].sort();
+  const codes   = [...new Set(items.map(i=>i.item_code).filter(Boolean))].sort();
   document.getElementById('mp-filter-etage').innerHTML = '<option value="">All</option>' + etages.map(e=>`<option>${e}</option>`).join('');
-  document.getElementById('mp-filter-type').innerHTML = '<option value="">All</option>' + types.map(t=>`<option>${t}</option>`).join('');
+  document.getElementById('mp-filter-type').innerHTML  = '<option value="">All</option>'  + codes.map(c=>`<option>${c}</option>`).join('');
+  document.getElementById('mp-filter-stage').value = '';
   document.getElementById('mp-search').value = '';
 
-  // Header actions
   document.getElementById('mp-header-actions').innerHTML = `
+    <button class="btn btn-outline btn-sm no-print" onclick="_silentPullAll().then(()=>mpRenderBoard())" title="Re-pull all data from Google Sheets">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.29"/></svg>
+      Sync
+    </button>
+    ${!isRole('operator') ? `
+    <button class="btn btn-outline btn-sm no-print" onclick="mpOpenAddModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Single Item
+    </button>
+    <button class="btn btn-accent no-print" onclick="mpOpenBOQModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      BOQ Entry
+    </button>` : ''}
     <button class="btn btn-outline btn-sm no-print" onclick="window.print()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       Print
@@ -4886,97 +5631,222 @@ function mpBackToProjects() {
 
 function mpRenderBoard() {
   if (!_mpCurrentProject) return;
-  const etageF = document.getElementById('mp-filter-etage').value;
-  const typeF = document.getElementById('mp-filter-type').value;
-  const stageF = document.getElementById('mp-filter-stage').value;
+
+  const etageF  = document.getElementById('mp-filter-etage').value;
+  const codeF   = document.getElementById('mp-filter-type').value;
+  const taskF   = (document.getElementById('mp-filter-stage').value || '').toLowerCase();
   const statusF = document.getElementById('mp-filter-status').value;
-  const search = document.getElementById('mp-search').value.toLowerCase();
+  const search  = document.getElementById('mp-search').value.toLowerCase();
 
   let items = getMasterplanItems().filter(i => i.project === _mpCurrentProject);
 
-  if (etageF) items = items.filter(i => i.etage === etageF);
-  if (typeF)  items = items.filter(i => i.product_type === typeF);
-  if (stageF) items = items.filter(i => i[stageF] === true || i[stageF] === 'TRUE');
-  if (statusF === 'complete')    items = items.filter(i => MP_STAGES.every(st => i[st.key]));
-  if (statusF === 'not-started') items = items.filter(i => MP_STAGES.every(st => !i[st.key]));
-  if (statusF === 'in-progress') items = items.filter(i => {
-    const done = MP_STAGES.filter(st => i[st.key]).length;
-    return done > 0 && done < MP_STAGES.length;
-  });
-  if (search) items = items.filter(i =>
-    (i.barcode||'').toLowerCase().includes(search) ||
+  if (etageF)  items = items.filter(i => i.etage === etageF);
+  if (codeF)   items = items.filter(i => i.item_code === codeF || i.product_type === codeF);
+  if (taskF)   items = items.filter(i => (i.tasks||[]).some(t => t.name.toLowerCase().includes(taskF)));
+  if (statusF === 'complete')    items = items.filter(i => { const p = mpItemProgress(i); return p.total > 0 && p.done === p.total; });
+  if (statusF === 'not-started') items = items.filter(i => { const p = mpItemProgress(i); return p.done === 0; });
+  if (statusF === 'in-progress') items = items.filter(i => { const p = mpItemProgress(i); return p.done > 0 && p.done < p.total; });
+  if (search)  items = items.filter(i =>
+    (i.item_code||'').toLowerCase().includes(search) ||
+    (i.sub_type||'').toLowerCase().includes(search) ||
+    (i.material||'').toLowerCase().includes(search) ||
     (i.description||'').toLowerCase().includes(search));
 
   // Progress stats
-  const allItems = getMasterplanItems().filter(i => i.project === _mpCurrentProject);
-  const totalChecks = allItems.length * MP_STAGES.length;
-  const doneChecks = allItems.reduce((s,i) => s + MP_STAGES.filter(st=>i[st.key]).length, 0);
-  const pct = totalChecks > 0 ? Math.round(doneChecks/totalChecks*100) : 0;
+  const allItems  = getMasterplanItems().filter(i => i.project === _mpCurrentProject);
+  const totalTask = allItems.reduce((s,i) => s + mpParseTasks(i.tasks).length, 0);
+  const doneTask  = allItems.reduce((s,i) => s + mpParseTasks(i.tasks).filter(t=>t.done).length, 0);
+  const pct       = totalTask > 0 ? Math.round(doneTask / totalTask * 100) : 0;
   document.getElementById('mp-progress-pct').textContent = pct + '%';
   document.getElementById('mp-progress-bar').style.width = pct + '%';
-  document.getElementById('mp-board-sub').textContent = `${allItems.length} items · ${allItems.filter(i=>MP_STAGES.every(st=>i[st.key])).length} complete · ${doneChecks}/${totalChecks} checks done`;
 
-  // Stage pills
-  document.getElementById('mp-stage-pills').innerHTML = MP_STAGES.map(st => {
-    const done = allItems.filter(i=>i[st.key]).length;
-    const stagePct = allItems.length > 0 ? Math.round(done/allItems.length*100) : 0;
-    const cls = stagePct===100?'done':stagePct>0?'partial':'todo';
-    return `<span class="stage-pill ${cls}" title="${done}/${allItems.length}">${st.icon} ${st.label} ${stagePct}%</span>`;
+  const grandTotal = allItems.reduce((s,i) => s + (Number(i.total)||0), 0);
+  const fullyDone  = allItems.filter(i => { const p = mpItemProgress(i); return p.total > 0 && p.done === p.total; }).length;
+  document.getElementById('mp-board-sub').textContent =
+    `${allItems.length} items · ${fullyDone} complete · ${doneTask}/${totalTask} tasks done${grandTotal ? ' · Total: ' + fmt(grandTotal) + ' CFA' : ''}`;
+
+  // Stage pills — collect all unique task names across project items
+  const allTaskNames = [...new Set(allItems.flatMap(i => mpParseTasks(i.tasks).map(t=>t.name)))];
+  document.getElementById('mp-stage-pills').innerHTML = allTaskNames.slice(0,12).map(name => {
+    const itemsWithTask = allItems.filter(i => mpParseTasks(i.tasks).some(t=>t.name===name));
+    const doneCount     = itemsWithTask.filter(i => mpParseTasks(i.tasks).find(t=>t.name===name)?.done).length;
+    const stagePct      = itemsWithTask.length > 0 ? Math.round(doneCount/itemsWithTask.length*100) : 0;
+    const cls           = stagePct===100?'done':stagePct>0?'partial':'todo';
+    return `<span class="stage-pill ${cls}" title="${doneCount}/${itemsWithTask.length}">${name} ${stagePct}%</span>`;
   }).join('');
 
-  // Table
+  // Table rows
   const total = items.length;
   const start = (_mpPage.current - 1) * MP_PAGE_SIZE;
-  const page = items.slice(start, start + MP_PAGE_SIZE);
-  const allData = getMasterplanItems();
+  const page  = items.slice(start, start + MP_PAGE_SIZE);
 
   document.getElementById('mp-tbody').innerHTML = page.length === 0
-    ? '<tr><td colspan="17" style="text-align:center;padding:32px;color:var(--text3);">No items found</td></tr>'
+    ? '<tr><td colspan="11" style="text-align:center;padding:32px;color:var(--text3);">No items found</td></tr>'
     : page.map(item => {
-      const idx = allData.findIndex(x => x.id === item.id);
-      const stagesHtml = MP_STAGES.map(st => {
-        const checked = item[st.key] === true || item[st.key] === 'TRUE';
-        return `<td class="mp-stage-col">
-          <button class="mp-check ${checked?'done':'todo'}" onclick="mpToggleStage('${item.id}','${st.key}')" title="${st.label}">
-            ${checked ? '✓' : '·'}
-          </button>
-        </td>`;
+        const tasks   = mpParseTasks(item.tasks);
+        const prog    = mpItemProgress(item);
+        const rowBg   = prog.total > 0 && prog.done === prog.total ? 'background:var(--green-bg);' : '';
+
+        const taskHtml = tasks.length === 0
+          ? '<span style="color:var(--text3);font-size:11px;font-family:DM Mono,monospace;">No tasks</span>'
+          : tasks.map((t, ti) => {
+              const btnCls = t.done ? 'mp-check done' : 'mp-check todo';
+              return `<span style="display:inline-flex;align-items:center;gap:2px;margin:2px;flex-wrap:nowrap;">
+                <button class="${btnCls}" onclick="mpShowTaskDetail('${item.id}',${ti})"
+                  style="width:auto;padding:2px 8px;border-radius:99px;font-size:10px;font-family:'DM Mono',monospace;white-space:nowrap;"
+                  title="${t.done ? '✓ ' + (t.done_by||'') : 'Pending'}">
+                  ${t.done ? '✓' : '·'} ${t.name}
+                </button>${t.done && t.done_by ? `<span style="font-size:9px;font-family:'DM Mono',monospace;color:var(--green);opacity:0.9;">${t.done_by.split(' ')[0]}</span>` : ''}
+              </span>`;
+            }).join('');
+
+        const progBar = tasks.length > 0
+          ? `<div style="height:3px;background:var(--bg3);border-radius:2px;margin-top:6px;overflow:hidden;">
+               <div style="height:100%;background:${prog.pct===100?'var(--green)':'var(--accent)'};width:${prog.pct}%;border-radius:2px;transition:width 0.3s;"></div>
+             </div>`
+          : '';
+
+        return `<tr style="${rowBg}">
+          <td class="mono-cell" style="font-size:11px;">${item.etage||'-'}</td>
+          <td style="font-weight:700;color:var(--accent);font-size:12px;">${item.item_code||'-'}</td>
+          <td><span class="tag">${item.sub_type||'-'}</span></td>
+          <td style="font-size:11px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${item.material||''}">${item.material||'-'}</td>
+          <td class="text-center mono-cell" style="font-size:12px;font-weight:700;">${item.seq_num||'-'}</td>
+          <td style="min-width:280px;">
+            <div style="line-height:1.8;">${taskHtml}</div>
+            ${progBar}
+          </td>
+          <td class="mono-cell text-right mp-price-col" style="font-size:11px;">${item.unit_price ? fmt(item.unit_price) : '-'}</td>
+          <td class="mono-cell text-right mp-price-col" style="font-size:11px;font-weight:700;color:var(--accent);">${item.total ? fmt(item.total) : '-'}</td>
+          <td style="font-size:11px;">${item.installation_member||'-'}</td>
+          <td class="mono-cell" style="font-size:11px;">${item.installation_date||'-'}</td>
+          <td class="no-print" style="white-space:nowrap;${isRole('operator')?'display:none;':''}">
+            <button class="btn btn-outline btn-sm" onclick="mpEditItem('${item.id}')" title="Edit">✏️</button>
+            <button class="btn btn-danger btn-sm" onclick="mpDeleteItem('${item.id}')" title="Delete">✕</button>
+          </td>
+        </tr>`;
       }).join('');
-      const doneCnt = MP_STAGES.filter(st=>item[st.key]).length;
-      const rowBg = doneCnt===MP_STAGES.length ? 'background:var(--green-bg);' : doneCnt>0 ? '' : '';
-      return `<tr style="${rowBg}">
-        <td class="mono-cell" style="font-size:11px;">${item.etage||'-'}</td>
-        <td><span class="tag">${item.product_type||'-'}</span></td>
-        <td style="font-size:12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${item.description||''}">${item.description||'-'}</td>
-        <td class="mono-cell" style="font-size:11px;">${item.barcode||'-'}</td>
-        ${stagesHtml}
-        <td style="font-size:11px;">${item.installation_member||'-'}</td>
-        <td class="mono-cell" style="font-size:11px;">${item.installation_date||'-'}</td>
-        <td class="no-print" style="white-space:nowrap;">
-          <button class="btn btn-outline btn-sm" onclick="mpEditItem('${item.id}')" title="Edit">✏️</button>
-          <button class="btn btn-danger btn-sm" onclick="mpDeleteItem('${item.id}')" title="Delete">✕</button>
-        </td>
-      </tr>`;
-    }).join('');
 
   renderPagination('mp-pagination', total, _mpPage.current, p => { _mpPage.current = p; mpRenderBoard(); });
 }
 
-function mpToggleStage(id, stage) {
+function mpToggleTask(itemId, taskIndex) {
   const items = getMasterplanItems();
-  const idx = items.findIndex(i => i.id === id);
+  const idx   = items.findIndex(i => i.id === itemId);
   if (idx < 0) return;
-  items[idx][stage] = !(items[idx][stage] === true || items[idx][stage] === 'TRUE');
+  const tasks = mpParseTasks(items[idx].tasks);
+  if (!tasks[taskIndex]) return;
+
+  const task = tasks[taskIndex];
+  if (!task.done) {
+    // Marking as DONE — stamp who & when
+    task.done    = true;
+    task.done_by = currentUser ? (currentUser.fullname || currentUser.username) : 'Unknown';
+    task.done_at = new Date().toISOString();
+  } else {
+    // Undoing — only admin can undo, or the same user who completed it
+    const isAdmin   = currentUser && currentUser.role === 'admin';
+    const isSameUser = currentUser && (currentUser.fullname === task.done_by || currentUser.username === task.done_by);
+    if (!isAdmin && !isSameUser) {
+      showToast('error', 'Not Allowed', `Only an admin or ${task.done_by} can undo this task.`);
+      return;
+    }
+    task.done    = false;
+    task.done_by = null;
+    task.done_at = null;
+  }
+
+  items[idx].tasks = tasks;
   saveMasterplanItems(items);
   mpRenderBoard();
 }
 
-// ── Add / Edit modal ──
+// ── Task detail popup ──
+let _tdItemId = null, _tdTaskIdx = null;
+
+function mpShowTaskDetail(itemId, taskIndex) {
+  const item  = getMasterplanItems().find(i => i.id === itemId);
+  if (!item) return;
+  const tasks = mpParseTasks(item.tasks);
+  const task  = tasks[taskIndex];
+  if (!task) return;
+
+  _tdItemId   = itemId;
+  _tdTaskIdx  = taskIndex;
+
+  // Status icon + label
+  const iconEl   = document.getElementById('td-status-icon');
+  const badgeEl  = document.getElementById('td-status-badge');
+  if (task.done) {
+    iconEl.style.background = 'var(--green-bg)';
+    iconEl.textContent = '✓';
+    badgeEl.innerHTML = '<span class="badge badge-green">Completed</span>';
+  } else {
+    iconEl.style.background = 'var(--bg3)';
+    iconEl.textContent = '○';
+    badgeEl.innerHTML = '<span class="badge badge-gray">Pending</span>';
+  }
+
+  document.getElementById('td-task-name').textContent  = task.name;
+  document.getElementById('td-item-label').textContent =
+    `${item.item_code || ''} · ${item.sub_type || ''} · #${item.seq_num || ''}${item.etage ? ' · ' + item.etage : ''}`;
+
+  // Completion info
+  const byRow = document.getElementById('td-done-by-row');
+  if (task.done && task.done_by) {
+    byRow.style.display = 'flex';
+    document.getElementById('td-done-by').textContent = task.done_by;
+    const dt = task.done_at ? new Date(task.done_at) : null;
+    document.getElementById('td-done-at').textContent = dt
+      ? dt.toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}) + '  ' +
+        dt.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit', second:'2-digit'})
+      : 'Unknown time';
+  } else {
+    byRow.style.display = 'none';
+  }
+
+  // Toggle button
+  const toggleBtn = document.getElementById('td-toggle-btn');
+  if (task.done) {
+    const canUndo = isRole('superadmin','admin') || (currentUser && (currentUser.fullname === task.done_by || currentUser.username === task.done_by));
+    if (canUndo) {
+      toggleBtn.style.display = '';
+      toggleBtn.textContent = 'Mark as Pending';
+      toggleBtn.className = 'btn btn-outline';
+    } else {
+      toggleBtn.style.display = 'none';
+    }
+  } else {
+    toggleBtn.style.display = '';
+    toggleBtn.textContent = 'Mark as Done';
+    toggleBtn.className = 'btn btn-accent';
+  }
+
+  document.getElementById('task-detail-modal').classList.add('open');
+}
+
+function tdToggleFromModal() {
+  closeModal('task-detail-modal');
+  if (_tdItemId !== null && _tdTaskIdx !== null) {
+    mpToggleTask(_tdItemId, _tdTaskIdx);
+  }
+}
 let _mpEditId = null;
+
+function mpAddTaskRow(value = '', done = false) {
+  const list = document.getElementById('mp-stage-checks');
+  const row  = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:8px;align-items:center;';
+  row.innerHTML = `
+    <input type="checkbox" ${done?'checked':''} class="mp-task-done" style="accent-color:var(--accent);flex-shrink:0;">
+    <input type="text" value="${value.replace(/"/g,'&quot;')}" placeholder="Task name e.g. CUTTING MELAMINE" style="flex:1;" class="mp-task-name">
+    <button onclick="this.parentElement.remove()" style="background:var(--red-bg);border:1px solid var(--red);color:var(--red);border-radius:var(--radius);padding:4px 8px;cursor:pointer;font-size:11px;flex-shrink:0;">✕</button>`;
+  list.appendChild(row);
+}
 
 function mpOpenAddModal() {
   _mpEditId = null;
-  document.getElementById('mp-modal-title').textContent = 'Add Masterplan Item';
+  document.getElementById('mp-modal-title').textContent = 'Add Single Item';
   document.getElementById('mp-etage').value = '';
   document.getElementById('mp-ptype').value = '';
   document.getElementById('mp-desc').value = '';
@@ -4986,30 +5856,26 @@ function mpOpenAddModal() {
   document.getElementById('mp-polyboard-date').value = '';
   document.getElementById('mp-installation-date').value = '';
   document.getElementById('mp-installer').value = '';
-
-  // Populate etage datalist from existing items in this project
+  document.getElementById('mp-qty').value = '';
+  document.getElementById('mp-unit-price').value = '';
+  document.getElementById('mp-total-display').value = '';
+  document.getElementById('mp-stage-checks').innerHTML = '';
+  const preview = document.getElementById('mp-tmpl-preview');
+  if (preview) { preview.innerHTML = ''; preview.style.display = 'none'; }
+  mpPopulateTemplateCodes();
   const etages = [...new Set(getMasterplanItems().filter(i=>i.project===_mpCurrentProject).map(i=>i.etage).filter(Boolean))];
   document.getElementById('mp-etage-list').innerHTML = etages.map(e=>`<option value="${e}">`).join('');
-
-  // Stage checkboxes
-  document.getElementById('mp-stage-checks').innerHTML = MP_STAGES.map(st =>
-    `<label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;padding:8px 10px;background:var(--bg2);border-radius:var(--radius);">
-      <input type="checkbox" id="mp-chk-${st.key}" style="accent-color:var(--accent);">
-      ${st.icon} ${st.label}
-    </label>`
-  ).join('');
-
   document.getElementById('mp-modal').classList.add('open');
 }
 
 function mpEditItem(id) {
   const items = getMasterplanItems();
-  const item = items.find(i => i.id === id);
+  const item  = items.find(i => i.id === id);
   if (!item) return;
   _mpEditId = id;
   document.getElementById('mp-modal-title').textContent = 'Edit Item';
   document.getElementById('mp-etage').value = item.etage || '';
-  document.getElementById('mp-ptype').value = item.product_type || '';
+  document.getElementById('mp-ptype').value = item.product_type || item.item_code || '';
   document.getElementById('mp-desc').value = item.description || '';
   document.getElementById('mp-barcode').value = item.barcode || '';
   document.getElementById('mp-notes-field').value = item.notes || '';
@@ -5017,50 +5883,61 @@ function mpEditItem(id) {
   document.getElementById('mp-polyboard-date').value = item.polyboard_date || '';
   document.getElementById('mp-installation-date').value = item.installation_date || '';
   document.getElementById('mp-installer').value = item.installation_member || '';
-
+  document.getElementById('mp-qty').value = item.qty || '';
+  document.getElementById('mp-unit-price').value = item.unit_price || '';
+  document.getElementById('mp-total-display').value = item.total ? fmt(item.total) : '';
+  mpPopulateTemplateCodes();
+  const preview = document.getElementById('mp-tmpl-preview');
+  if (preview) { preview.innerHTML = ''; preview.style.display = 'none'; }
   const etages = [...new Set(getMasterplanItems().filter(i=>i.project===_mpCurrentProject).map(i=>i.etage).filter(Boolean))];
   document.getElementById('mp-etage-list').innerHTML = etages.map(e=>`<option value="${e}">`).join('');
-
-  document.getElementById('mp-stage-checks').innerHTML = MP_STAGES.map(st =>
-    `<label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;padding:8px 10px;background:var(--bg2);border-radius:var(--radius);">
-      <input type="checkbox" id="mp-chk-${st.key}" ${item[st.key]?'checked':''} style="accent-color:var(--accent);">
-      ${st.icon} ${st.label}
-    </label>`
-  ).join('');
-
+  // Load existing tasks
+  document.getElementById('mp-stage-checks').innerHTML = '';
+  const tasks = mpParseTasks(item.tasks);
+  if (tasks.length > 0) {
+    tasks.forEach(t => mpAddTaskRow(t.name, t.done));
+  }
   document.getElementById('mp-modal').classList.add('open');
 }
 
 function mpSaveItem() {
-  const etage    = document.getElementById('mp-etage').value.trim();
-  const ptype    = document.getElementById('mp-ptype').value.trim();
-  const desc     = document.getElementById('mp-desc').value.trim();
-  const barcode  = document.getElementById('mp-barcode').value.trim();
-  const notes    = document.getElementById('mp-notes-field').value.trim();
-  const dimDate  = document.getElementById('mp-dimension-date').value;
-  const polyDate = document.getElementById('mp-polyboard-date').value;
-  const instDate = document.getElementById('mp-installation-date').value;
+  const etage     = document.getElementById('mp-etage').value.trim();
+  const ptype     = document.getElementById('mp-ptype').value.trim();
+  const desc      = document.getElementById('mp-desc').value.trim();
+  const barcode   = document.getElementById('mp-barcode').value.trim();
+  const notes     = document.getElementById('mp-notes-field').value.trim();
+  const dimDate   = document.getElementById('mp-dimension-date').value;
+  const polyDate  = document.getElementById('mp-polyboard-date').value;
+  const instDate  = document.getElementById('mp-installation-date').value;
   const installer = document.getElementById('mp-installer').value.trim();
+  const unitPrice = parseFloat(document.getElementById('mp-unit-price').value) || 0;
+  const qty       = parseFloat(document.getElementById('mp-qty').value) || 0;
 
-  if (!etage && !barcode && !desc) { showToast('error', 'Missing', 'Enter at least an Etage, Barcode or Description.'); return; }
+  // Read tasks from the modal rows
+  const taskRows = document.querySelectorAll('#mp-stage-checks > div');
+  const tasks    = [...taskRows].map(row => ({
+    name: (row.querySelector('.mp-task-name')?.value || '').trim().toUpperCase(),
+    done: row.querySelector('.mp-task-done')?.checked || false
+  })).filter(t => t.name);
 
-  const stages = {};
-  MP_STAGES.forEach(st => { stages[st.key] = document.getElementById('mp-chk-'+st.key)?.checked || false; });
+  if (!etage && !barcode && !desc && !ptype) { showToast('error', 'Missing', 'Enter at least one identifying field.'); return; }
 
   const items = getMasterplanItems();
   if (_mpEditId) {
     const idx = items.findIndex(i => i.id === _mpEditId);
     if (idx >= 0) {
-      items[idx] = { ...items[idx], etage, product_type:ptype, description:desc, barcode, notes,
-        dimension_date:dimDate, polyboard_date:polyDate, installation_date:instDate,
-        installation_member:installer, ...stages };
+      items[idx] = { ...items[idx], etage, product_type: ptype, item_code: ptype, description: desc,
+        barcode, notes, unit_price: unitPrice, qty, total: unitPrice * qty,
+        dimension_date: dimDate, polyboard_date: polyDate, installation_date: instDate,
+        installation_member: installer, tasks };
     }
     showToast('success', 'Updated', 'Item updated.');
   } else {
-    items.push({ id: 'mp_'+Date.now(), project:_mpCurrentProject, etage, product_type:ptype,
-      description:desc, barcode, notes, dimension_date:dimDate, polyboard_date:polyDate,
-      installation_date:instDate, installation_member:installer,
-      created: new Date().toISOString().substring(0,10), ...stages });
+    items.push({ id: 'mp_'+Date.now(), project: _mpCurrentProject, etage, product_type: ptype,
+      item_code: ptype, description: desc, barcode, notes, unit_price: unitPrice, qty,
+      total: unitPrice * qty, dimension_date: dimDate, polyboard_date: polyDate,
+      installation_date: instDate, installation_member: installer, tasks,
+      created: new Date().toISOString().substring(0,10) });
     showToast('success', 'Added', 'Item added to masterplan.');
   }
   saveMasterplanItems(items);
@@ -5074,6 +5951,830 @@ function mpDeleteItem(id) {
   saveMasterplanItems(items);
   mpRenderBoard();
   showToast('success', 'Deleted', 'Item removed from masterplan.');
+}
+
+function mpCalcTotal() {
+  const qty   = parseFloat(document.getElementById('mp-qty').value) || 0;
+  const price = parseFloat(document.getElementById('mp-unit-price').value) || 0;
+  document.getElementById('mp-total-display').value = qty && price ? fmt(qty * price) + ' CFA' : '';
+}
+
+// ── BOQ Batch Entry ──
+function mpOpenBOQModal() {
+  const tpls  = getTaskTemplates();
+  const codes = [...new Set(tpls.map(t => t.item_code).filter(Boolean))].sort();
+  const codeSel = document.getElementById('boq-item-code');
+  codeSel.innerHTML = '<option value="">Select item code...</option>' +
+    codes.map(c => `<option value="${c}">${c}</option>`).join('');
+  const etages = [...new Set(getMasterplanItems().filter(i=>i.project===_mpCurrentProject).map(i=>i.etage).filter(Boolean))];
+  document.getElementById('boq-etage-list').innerHTML = etages.map(e=>`<option value="${e}">`).join('');
+  document.getElementById('boq-material').value = '';
+  document.getElementById('boq-qty').value = '';
+  document.getElementById('boq-etage').value = '';
+  document.getElementById('boq-unit-price').value = '';
+  document.getElementById('boq-notes').value = '';
+  document.getElementById('boq-preview-tbody').innerHTML =
+    '<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text3);font-family:\'DM Mono\',monospace;font-size:11px;">Select an Item Code to preview rows</td></tr>';
+  document.getElementById('boq-total-line').style.display = 'none';
+  document.getElementById('mp-boq-modal').classList.add('open');
+}
+
+function boqLoadSubtypes() { boqUpdatePreview(); }
+function boqUpdateTotals() { boqUpdatePreview(); }
+
+function boqUpdatePreview() {
+  const code     = document.getElementById('boq-item-code').value;
+  const qty      = parseInt(document.getElementById('boq-qty').value) || 0;
+  const price    = parseFloat(document.getElementById('boq-unit-price').value) || 0;
+
+  if (!code) {
+    document.getElementById('boq-preview-tbody').innerHTML =
+      '<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text3);font-family:\'DM Mono\',monospace;font-size:11px;">Select an Item Code to preview rows</td></tr>';
+    document.getElementById('boq-total-line').style.display = 'none';
+    return;
+  }
+
+  const subtypes = getTaskTemplates().filter(t => t.item_code === code);
+  if (subtypes.length === 0) {
+    document.getElementById('boq-preview-tbody').innerHTML =
+      `<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--red);font-family:'DM Mono',monospace;font-size:11px;">No templates found for "${code}". Add them in Task Templates first.</td></tr>`;
+    document.getElementById('boq-total-line').style.display = 'none';
+    return;
+  }
+
+  // Show: one summary row per subtype, showing tasks + how many individual rows will be created
+  const totalRows = subtypes.length * (qty || 1);
+  document.getElementById('boq-preview-tbody').innerHTML = subtypes.map((t, si) => {
+    const tasks     = Array.isArray(t.tasks) ? t.tasks : [];
+    const taskPills = tasks.map(tk =>
+      `<span style="display:inline-flex;padding:2px 7px;border-radius:99px;font-family:'DM Mono',monospace;font-size:10px;background:var(--accent3);color:var(--accent);margin:2px;">${tk}</span>`
+    ).join('');
+    return `<tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:8px 12px;font-weight:700;color:var(--accent);font-size:13px;">${t.item_code}</td>
+      <td style="padding:8px 12px;"><span class="tag">${t.sub_type}</span></td>
+      <td style="padding:8px 12px;line-height:2;">${taskPills}</td>
+      <td style="padding:8px 12px;text-align:center;font-family:'DM Mono',monospace;font-weight:700;font-size:13px;">${qty||'?'} rows</td>
+      <td style="padding:8px 12px;text-align:right;font-family:'DM Mono',monospace;color:var(--accent);font-weight:700;">${(price&&qty) ? fmt(price*qty) : '-'}</td>
+    </tr>`;
+  }).join('');
+
+  if (price && qty) {
+    const grand = price * qty * subtypes.length;
+    document.getElementById('boq-total-line').style.display = 'block';
+    document.getElementById('boq-total-line').textContent =
+      `${subtypes.length} sub-types × ${qty} rows each = ${totalRows} total rows · Grand Total: ${fmt(grand)} CFA`;
+  } else if (qty) {
+    document.getElementById('boq-total-line').style.display = 'block';
+    document.getElementById('boq-total-line').textContent =
+      `${subtypes.length} sub-types × ${qty} rows each = ${totalRows} total rows`;
+  } else {
+    document.getElementById('boq-total-line').style.display = 'none';
+  }
+}
+
+function boqGenerate() {
+  const code     = document.getElementById('boq-item-code').value;
+  const qty      = parseInt(document.getElementById('boq-qty').value) || 0;
+  const price    = parseFloat(document.getElementById('boq-unit-price').value) || 0;
+  const material = document.getElementById('boq-material').value.trim();
+  const etage    = document.getElementById('boq-etage').value.trim();
+  const notes    = document.getElementById('boq-notes').value.trim();
+
+  if (!code) { showToast('error', 'Item Code Required', 'Select an item code.'); return; }
+  if (!qty)  { showToast('error', 'Quantity Required', 'Enter a quantity.');      return; }
+
+  const subtypes = getTaskTemplates().filter(t => t.item_code === code);
+  if (subtypes.length === 0) {
+    showToast('error', 'No Templates', `No task templates found for "${code}". Add them in Task Templates first.`);
+    return;
+  }
+
+  const items = getMasterplanItems();
+  const now   = new Date().toISOString().substring(0,10);
+  let   added = 0;
+
+  subtypes.forEach(t => {
+    const rawTasks = Array.isArray(t.tasks) ? t.tasks : [];
+    for (let i = 1; i <= qty; i++) {
+      const tasks = rawTasks.map(name => ({ name: String(name).toUpperCase(), done: false }));
+      items.push({
+        id:          'mp_' + Date.now() + '_' + Math.random().toString(36).substr(2,6),
+        project:     _mpCurrentProject,
+        item_code:   t.item_code,
+        sub_type:    t.sub_type,
+        material,
+        etage,
+        seq_num:     i,
+        product_type: t.sub_type,
+        description: `${t.item_code} — ${t.sub_type} #${i}${material ? ' · ' + material : ''}`,
+        barcode:     '',
+        qty:         1,
+        unit_price:  price,
+        total:       price,
+        notes,
+        tasks,
+        created:     now,
+      });
+      added++;
+    }
+  });
+
+  saveMasterplanItems(items);
+  closeModal('mp-boq-modal');
+  mpRenderBoard();
+  showToast('success', 'BOQ Generated',
+    `${added} rows created (${qty} × ${subtypes.length} sub-type${subtypes.length>1?'s':''}) for ${code}.`);
+}
+
+// §JS-DATA-WORKMEN ══════════════════════════════════════════════
+// Workman category accessors — Sheets-backed
+// ══════════════════════════════════════════════════════════════
+function getWorkmen() { return ls_get(LS.workmen, []); }
+function saveWorkmen(w) {
+  ls_set(LS.workmen, w);
+  autoSyncSheet('WORKMEN');
+}
+
+// §JS-DATA-WMP ══════════════════════════════════════════════════
+// Workers Plan entries — Sheets-backed
+// ══════════════════════════════════════════════════════════════
+function getWMPEntries() { return ls_get(LS.wmp, []); }
+function saveWMPEntries(e) {
+  ls_set(LS.wmp, e);
+  autoSyncSheet('WORKERS_MP');
+}
+
+// §JS-DATA-TASK-TEMPLATES ══════════════════════════════════════
+// Task template accessors — Sheets-backed
+// ══════════════════════════════════════════════════════════════
+function getTaskTemplates() { return ls_get(LS.task_templates, _defaultTaskTemplates()); }
+function saveTaskTemplates(t) {
+  ls_set(LS.task_templates, t);
+  autoSyncSheet('TASK_TEMPLATES');
+}
+
+// Pre-loaded defaults from the reference table image
+function _defaultTaskTemplates() {
+  return [
+    { id:'tt_door1_door',    item_code:'DOOR1',    sub_type:'DOOR',    tasks:['CUTTING MELAMINE','SANDING','PRESSING','RECUTTING','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_door1_frame',   item_code:'DOOR1',    sub_type:'FRAME',   tasks:['CUTTING MELAMINE','EDGING','MASSIF FIXING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_door2_door',    item_code:'DOOR2',    sub_type:'DOOR',    tasks:['CUTTING EUROLIGHT','FRAMING','PRESSING','RECUTTING','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_door2_frame',   item_code:'DOOR2',    sub_type:'FRAME',   tasks:['CUTTING MELAMINE','EDGING','MASSIF FIXING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_door3_door',    item_code:'DOOR3',    sub_type:'DOOR',    tasks:['CUTTING MDF','CUTTING CORE','PRESSING','RECUTTING','BORING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_door3_frame',   item_code:'DOOR3',    sub_type:'FRAME',   tasks:['CUTTING MASSIF','BORING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_door4_door',    item_code:'DOOR4',    sub_type:'DOOR',    tasks:['CUTTING MDF','CUTTING CORE','CUTTING VENEER','EDGING','PRESSING','RECUTTING','BORING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_door4_frame',   item_code:'DOOR4',    sub_type:'FRAME',   tasks:['CUTTING MASSIF','BORING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_cab1_door',     item_code:'CABINET1', sub_type:'DOOR',    tasks:['CUTTING MELAMINE','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_cab1_body',     item_code:'CABINET1', sub_type:'BODY',    tasks:['CUTTING MELAMINE','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_cab2_door',     item_code:'CABINET2', sub_type:'DOOR',    tasks:['CUTTING MDF','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_cab2_body',     item_code:'CABINET2', sub_type:'BODY',    tasks:['CUTTING MELAMINE','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_cab3_door',     item_code:'CABINET3', sub_type:'DOOR',    tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_cab3_body',     item_code:'CABINET3', sub_type:'BODY',    tasks:['CUTTING MELAMINE','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_cab4_door',     item_code:'CABINET4', sub_type:'DOOR',    tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_cab4_body',     item_code:'CABINET4', sub_type:'BODY',    tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_kit1_door',     item_code:'KITCHEN1', sub_type:'DOOR',    tasks:['CUTTING MELAMINE','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_kit1_body',     item_code:'KITCHEN1', sub_type:'BODY',    tasks:['CUTTING MELAMINE','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_kit2_door',     item_code:'KITCHEN2', sub_type:'DOOR',    tasks:['CUTTING MDF','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_kit2_body',     item_code:'KITCHEN2', sub_type:'BODY',    tasks:['CUTTING MELAMINE','EDGING','BORING','DELIVERY','INSTALLATION'] },
+    { id:'tt_kit3_door',     item_code:'KITCHEN3', sub_type:'DOOR',    tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_kit3_body',     item_code:'KITCHEN3', sub_type:'BODY',    tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_clad1_a',       item_code:'CLADDING1',sub_type:'CLADDING A', tasks:['CUTTING MELAMINE','EDGING','ENGRAVING','DELIVERY','INSTALLATION'] },
+    { id:'tt_clad1_b',       item_code:'CLADDING1',sub_type:'CLADDING B', tasks:['CUTTING MDF','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_clad1_c',       item_code:'CLADDING1',sub_type:'CLADDING C', tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_desk1',         item_code:'DESK1',    sub_type:'DESK',    tasks:['CUTTING MELAMINE','EDGING','BORING','ASSEMBLY','DELIVERY','INSTALLATION'] },
+    { id:'tt_desk2_a',       item_code:'DESK2',    sub_type:'DESK A',  tasks:['CUTTING MELAMINE','EDGING','BORING','ASSEMBLY','DELIVERY','INSTALLATION'] },
+    { id:'tt_desk2_b',       item_code:'DESK2',    sub_type:'DESK B',  tasks:['CUTTING MDF','ENGRAVING','SANDING','PAINTING','ASSEMBLY','DELIVERY','INSTALLATION'] },
+    { id:'tt_desk3',         item_code:'DESK3',    sub_type:'DESK',    tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','ASSEMBLY','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_bed1',          item_code:'BED1',     sub_type:'BED',     tasks:['CUTTING MELAMINE','EDGING','BORING','ASSEMBLY','DELIVERY','INSTALLATION'] },
+    { id:'tt_bed2',          item_code:'BED2',     sub_type:'BED',     tasks:['CUTTING MDF','ENGRAVING','ASSEMBLY','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_bed3',          item_code:'BED3',     sub_type:'BED',     tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','ASSEMBLY','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_tv1',           item_code:'TV UNIT1', sub_type:'TV',      tasks:['CUTTING MELAMINE','EDGING','BORING','ASSEMBLY','DELIVERY','INSTALLATION'] },
+    { id:'tt_tv2',           item_code:'TV UNIT2', sub_type:'TV',      tasks:['CUTTING MDF','ENGRAVING','ASSEMBLY','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+    { id:'tt_tv3',           item_code:'TV UNIT3', sub_type:'TV',      tasks:['CUTTING MDF','CUTTING VENEER','PRESSING','ENGRAVING','ASSEMBLY','SANDING','PAINTING','DELIVERY','INSTALLATION'] },
+  ];
+}
+
+
+// §JS-WORKMEN ════════════════════════════════════════════════════
+// Workman Categories — render, add/edit/delete, GSheet sync
+// ══════════════════════════════════════════════════════════════
+
+const _wmPage = { current: 1 };
+const WM_PAGE_SIZE = 20;
+let _wmEditId = null;
+
+function wmAutoCalcWage() {
+  const sal = parseFloat(document.getElementById('wm-salary').value) || 0;
+  if (sal > 0) document.getElementById('wm-daily').value = Math.round(sal / 26);
+}
+function wmAutoCalcSalary() {
+  const daily = parseFloat(document.getElementById('wm-daily').value) || 0;
+  if (daily > 0) document.getElementById('wm-salary').value = Math.round(daily * 26);
+}
+
+function renderWorkmen() {
+  const wm = getWorkmen();
+  const jobF = (document.getElementById('wm-filter-job')||{}).value || '';
+  const search = ((document.getElementById('wm-search')||{}).value || '').toLowerCase();
+
+  // Populate job filter
+  const jobs = [...new Set(wm.map(w => w.job).filter(Boolean))].sort();
+  const jobSel = document.getElementById('wm-filter-job');
+  const prevJob = jobSel.value;
+  jobSel.innerHTML = '<option value="">All Jobs</option>' + jobs.map(j => `<option value="${j}"${j===prevJob?' selected':''}>${j}</option>`).join('');
+
+  // Populate datalist in modal
+  const dl = document.getElementById('wm-job-datalist');
+  if (dl) dl.innerHTML = jobs.map(j => `<option value="${j}">`).join('');
+
+  // Filter
+  let filtered = wm;
+  if (jobF) filtered = filtered.filter(w => w.job === jobF);
+  if (search) filtered = filtered.filter(w =>
+    (w.name||'').toLowerCase().includes(search) ||
+    (w.id||'').toLowerCase().includes(search));
+
+  // Stat cards
+  const totalSalary = wm.reduce((s,w) => s + (Number(w.salary)||0), 0);
+  const totalDaily  = wm.reduce((s,w) => s + (Number(w.daily_wage)||0), 0);
+  const statsEl = document.getElementById('workmen-stats');
+  if (statsEl) statsEl.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--blue-bg);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="stat-label">Total Workmen</div>
+      <div class="stat-value">${wm.length}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--green-bg);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div class="stat-label">Total Monthly Salaries</div>
+      <div class="stat-value" style="font-size:18px;">${fmt(totalSalary)} <span style="font-size:12px;color:var(--text3);">CFA</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--gold-bg);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      </div>
+      <div class="stat-label">Total Daily Wages</div>
+      <div class="stat-value" style="font-size:18px;">${fmt(totalDaily)} <span style="font-size:12px;color:var(--text3);">CFA</span></div>
+    </div>`;
+
+  // Table
+  const total = filtered.length;
+  const start = (_wmPage.current - 1) * WM_PAGE_SIZE;
+  const page  = filtered.slice(start, start + WM_PAGE_SIZE);
+
+  const tbody = document.getElementById('workmen-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = page.length === 0
+    ? `<tr><td colspan="6" class="text-center" style="padding:40px;color:var(--text3);">No workmen yet. Click "Add Workman" to begin.</td></tr>`
+    : page.map(w => `<tr>
+        <td class="mono-cell fw7">${w.id||'-'}</td>
+        <td style="font-weight:600;">${w.name||'-'}</td>
+        <td><span class="tag">${w.job||'-'}</span></td>
+        <td class="mono-cell" style="white-space:nowrap;">
+          ${w.phone ? `<a href="tel:${w.phone}" style="color:var(--accent);text-decoration:none;" title="Call">${w.phone}</a>` : '-'}
+        </td>
+        <td class="text-right mono-cell">${w.salary ? fmt(w.salary) + ' CFA' : '-'}</td>
+        <td class="text-right mono-cell">${w.daily_wage ? fmt(w.daily_wage) + ' CFA' : '-'}</td>
+        <td class="no-print" style="white-space:nowrap;display:flex;gap:5px;align-items:center;">
+          ${w.phone ? `<button class="wa-btn" onclick="wmWhatsApp('${w.id}')" title="WhatsApp">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WA
+          </button>` : ''}
+          <button class="btn btn-outline btn-sm" onclick="editWorkman('${w.id}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteWorkman('${w.id}')">✕</button>
+        </td>
+      </tr>`).join('');
+
+  renderPagination('workmen-pagination', total, _wmPage.current, p => { _wmPage.current = p; renderWorkmen(); });
+}
+
+function openWorkmanModal() {
+  _wmEditId = null;
+  document.getElementById('wm-modal-title').textContent = 'Add Workman';
+  document.getElementById('wm-save-btn').textContent = 'Save Workman';
+  document.getElementById('wm-id').value = '';
+  document.getElementById('wm-name').value = '';
+  document.getElementById('wm-job').value = '';
+  document.getElementById('wm-phone').value = '';
+  document.getElementById('wm-salary').value = '';
+  document.getElementById('wm-daily').value = '';
+  document.getElementById('wm-notes').value = '';
+  document.getElementById('workman-modal').classList.add('open');
+}
+
+function editWorkman(id) {
+  const w = getWorkmen().find(w => w.id === id);
+  if (!w) return;
+  _wmEditId = id;
+  document.getElementById('wm-modal-title').textContent = 'Edit Workman';
+  document.getElementById('wm-save-btn').textContent = 'Update Workman';
+  document.getElementById('wm-id').value = w.id || '';
+  document.getElementById('wm-name').value = w.name || '';
+  document.getElementById('wm-job').value = w.job || '';
+  document.getElementById('wm-phone').value = w.phone || '';
+  document.getElementById('wm-salary').value = w.salary || '';
+  document.getElementById('wm-daily').value = w.daily_wage || '';
+  document.getElementById('wm-notes').value = w.notes || '';
+  document.getElementById('workman-modal').classList.add('open');
+}
+
+function saveWorkman() {
+  const id   = document.getElementById('wm-id').value.trim();
+  const name = document.getElementById('wm-name').value.trim();
+  const job  = document.getElementById('wm-job').value.trim();
+  if (!name) { showToast('error', 'Name Required', 'Enter the workman\'s full name.'); return; }
+  if (!id)   { showToast('error', 'ID Required', 'Enter a workman ID.'); return; }
+
+  const entry = {
+    id,
+    name,
+    job,
+    phone:      document.getElementById('wm-phone').value.trim(),
+    salary:     parseFloat(document.getElementById('wm-salary').value) || 0,
+    daily_wage: parseFloat(document.getElementById('wm-daily').value) || 0,
+    notes:      document.getElementById('wm-notes').value.trim()
+  };
+
+  const wm = getWorkmen();
+  if (_wmEditId) {
+    const idx = wm.findIndex(w => w.id === _wmEditId);
+    if (idx >= 0) {
+      // If ID changed, check no conflict
+      if (id !== _wmEditId && wm.find(w => w.id === id)) {
+        showToast('error', 'Duplicate ID', 'A workman with this ID already exists.'); return;
+      }
+      wm[idx] = entry;
+    }
+    showToast('success', 'Updated', `${name} updated.`);
+  } else {
+    if (wm.find(w => w.id === id)) {
+      showToast('error', 'Duplicate ID', 'A workman with this ID already exists.'); return;
+    }
+    wm.push(entry);
+    showToast('success', 'Added', `${name} added to workmen.`);
+  }
+
+  saveWorkmen(wm);
+  closeModal('workman-modal');
+  renderWorkmen();
+}
+
+function deleteWorkman(id) {
+  const wm = getWorkmen();
+  const w = wm.find(w => w.id === id);
+  if (!confirm(`Delete workman "${w?.name}"?`)) return;
+  saveWorkmen(wm.filter(w => w.id !== id));
+  renderWorkmen();
+  showToast('success', 'Deleted', 'Workman removed.');
+}
+
+function wmWhatsApp(id) {
+  const w = getWorkmen().find(w => w.id === id);
+  if (!w?.phone) return;
+  const num = w.phone.replace(/\D/g, '');
+  window.open(`https://wa.me/${num}`, '_blank');
+}
+
+
+// §JS-TASK-TEMPLATES ══════════════════════════════════════════════
+// Task template library — render, add/edit/delete, GSheet sync
+// Also provides mpLoadSubtypes / mpApplyTemplate for Masterplan modal
+// ══════════════════════════════════════════════════════════════
+
+let _ttEditId = null;
+
+function renderTaskTemplates() {
+  const tpls = getTaskTemplates();
+
+  // Populate filter dropdowns
+  const codes    = [...new Set(tpls.map(t => t.item_code).filter(Boolean))].sort();
+  const subtypes = [...new Set(tpls.map(t => t.sub_type).filter(Boolean))].sort();
+  const codeF    = document.getElementById('tt-filter-code');
+  const subF     = document.getElementById('tt-filter-subtype');
+  const prevCode = codeF.value, prevSub = subF.value;
+  codeF.innerHTML = '<option value="">All Codes</option>' + codes.map(c => `<option${c===prevCode?' selected':''}>${c}</option>`).join('');
+  subF.innerHTML  = '<option value="">All Sub-types</option>' + subtypes.map(s => `<option${s===prevSub?' selected':''}>${s}</option>`).join('');
+
+  let filtered = tpls;
+  if (prevCode) filtered = filtered.filter(t => t.item_code === prevCode);
+  if (prevSub)  filtered = filtered.filter(t => t.sub_type  === prevSub);
+
+  const tbody = document.getElementById('tt-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = filtered.length === 0
+    ? `<tr><td colspan="4" class="text-center" style="padding:40px;color:var(--text3);">No templates. Click "Add Template" to create one.</td></tr>`
+    : filtered.map(t => {
+        const tasks = Array.isArray(t.tasks) ? t.tasks : [];
+        const pills = tasks.map((tk,i) =>
+          `<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;font-family:'DM Mono',monospace;font-size:10px;background:var(--bg3);color:var(--text2);margin:2px;">
+            <span style="color:var(--text3);font-size:9px;">${i+1}</span> ${tk}
+          </span>`
+        ).join('');
+        return `<tr>
+          <td style="font-weight:700;color:var(--accent);">${t.item_code}</td>
+          <td><span class="tag">${t.sub_type}</span></td>
+          <td style="line-height:2;">${pills}</td>
+          <td class="no-print" style="white-space:nowrap;">
+            <button class="btn btn-outline btn-sm" onclick="ttEditTemplate('${t.id}')">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="ttDeleteTemplate('${t.id}')">✕</button>
+          </td>
+        </tr>`;
+      }).join('');
+}
+
+function ttAddTaskRow(value = '') {
+  const list = document.getElementById('tt-task-list');
+  const row = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:8px;align-items:center;';
+  row.innerHTML = `
+    <span style="color:var(--text3);font-family:DM Mono,monospace;font-size:11px;min-width:18px;text-align:right;" class="tt-row-num"></span>
+    <input type="text" value="${value}" placeholder="Task name e.g. CUTTING MDF" style="flex:1;" class="tt-task-input">
+    <button onclick="this.parentElement.remove();ttRenumberRows();" style="background:var(--red-bg);border:1px solid var(--red);color:var(--red);border-radius:var(--radius);padding:5px 9px;cursor:pointer;font-size:12px;">✕</button>`;
+  list.appendChild(row);
+  ttRenumberRows();
+}
+
+function ttRenumberRows() {
+  document.querySelectorAll('#tt-task-list .tt-row-num').forEach((el, i) => { el.textContent = (i+1) + '.'; });
+}
+
+function _ttPopulateCodeDatalist() {
+  const codes = [...new Set(getTaskTemplates().map(t => t.item_code).filter(Boolean))].sort();
+  const subtypes = [...new Set(getTaskTemplates().map(t => t.sub_type).filter(Boolean))].sort();
+  document.getElementById('tt-code-datalist').innerHTML = codes.map(c => `<option value="${c}">`).join('');
+  document.getElementById('tt-subtype-datalist').innerHTML = subtypes.map(s => `<option value="${s}">`).join('');
+}
+
+function ttSyncSubtypeList() {
+  const code = document.getElementById('tt-code').value.trim();
+  const subtypes = [...new Set(getTaskTemplates().filter(t => t.item_code === code).map(t => t.sub_type).filter(Boolean))];
+  document.getElementById('tt-subtype-datalist').innerHTML = subtypes.map(s => `<option value="${s}">`).join('');
+}
+
+function ttOpenAddModal() {
+  _ttEditId = null;
+  document.getElementById('tt-modal-title').textContent = 'Add Task Template';
+  document.getElementById('tt-save-btn').textContent = 'Save Template';
+  document.getElementById('tt-code').value = '';
+  document.getElementById('tt-subtype').value = '';
+  document.getElementById('tt-task-list').innerHTML = '';
+  // Add a few blank rows to start
+  ['','',''].forEach(() => ttAddTaskRow());
+  _ttPopulateCodeDatalist();
+  document.getElementById('tt-modal').classList.add('open');
+}
+
+function ttEditTemplate(id) {
+  const t = getTaskTemplates().find(t => t.id === id);
+  if (!t) return;
+  _ttEditId = id;
+  document.getElementById('tt-modal-title').textContent = 'Edit Task Template';
+  document.getElementById('tt-save-btn').textContent = 'Update Template';
+  document.getElementById('tt-code').value = t.item_code || '';
+  document.getElementById('tt-subtype').value = t.sub_type || '';
+  document.getElementById('tt-task-list').innerHTML = '';
+  const tasks = Array.isArray(t.tasks) ? t.tasks : [];
+  tasks.forEach(tk => ttAddTaskRow(tk));
+  if (tasks.length === 0) ttAddTaskRow();
+  _ttPopulateCodeDatalist();
+  document.getElementById('tt-modal').classList.add('open');
+}
+
+function ttSaveTemplate() {
+  const code    = document.getElementById('tt-code').value.trim().toUpperCase();
+  const subtype = document.getElementById('tt-subtype').value.trim().toUpperCase();
+  const tasks   = [...document.querySelectorAll('#tt-task-list .tt-task-input')]
+    .map(i => i.value.trim().toUpperCase()).filter(Boolean);
+
+  if (!code)    { showToast('error', 'Item Code Required', 'Enter an item code.'); return; }
+  if (!subtype) { showToast('error', 'Sub-type Required', 'Enter a sub-type.');    return; }
+  if (tasks.length === 0) { showToast('error', 'No Tasks', 'Add at least one task.'); return; }
+
+  const tpls = getTaskTemplates();
+  // Duplicate check (same code+subtype, different id)
+  const dup = tpls.find(t => t.item_code === code && t.sub_type === subtype && t.id !== (_ttEditId||''));
+  if (dup) { showToast('error', 'Duplicate', `A template for ${code} / ${subtype} already exists.`); return; }
+
+  const entry = { id: _ttEditId || 'tt_'+Date.now(), item_code: code, sub_type: subtype, tasks };
+  if (_ttEditId) {
+    const idx = tpls.findIndex(t => t.id === _ttEditId);
+    if (idx >= 0) tpls[idx] = entry;
+    showToast('success', 'Updated', `Template ${code} / ${subtype} updated.`);
+  } else {
+    tpls.push(entry);
+    showToast('success', 'Added', `Template ${code} / ${subtype} saved.`);
+  }
+  saveTaskTemplates(tpls);
+  closeModal('tt-modal');
+  renderTaskTemplates();
+}
+
+function ttDeleteTemplate(id) {
+  const t = getTaskTemplates().find(t => t.id === id);
+  if (!confirm(`Delete template "${t?.item_code} / ${t?.sub_type}"?`)) return;
+  saveTaskTemplates(getTaskTemplates().filter(t => t.id !== id));
+  renderTaskTemplates();
+  showToast('success', 'Deleted', 'Template removed.');
+}
+
+// ── Masterplan modal helpers ──
+function mpPopulateTemplateCodes() {
+  const tpls  = getTaskTemplates();
+  const codes = [...new Set(tpls.map(t => t.item_code).filter(Boolean))].sort();
+  const sel   = document.getElementById('mp-tmpl-code');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">— Select to auto-load tasks —</option>' +
+    codes.map(c => `<option value="${c}">${c}</option>`).join('');
+  document.getElementById('mp-tmpl-subtype').innerHTML = '<option value="">— Select sub-type —</option>';
+}
+
+function mpLoadSubtypes() {
+  const code     = document.getElementById('mp-tmpl-code').value;
+  const tpls     = getTaskTemplates().filter(t => t.item_code === code);
+  const subtypes = [...new Set(tpls.map(t => t.sub_type).filter(Boolean))].sort();
+  document.getElementById('mp-tmpl-subtype').innerHTML =
+    '<option value="">— Select sub-type —</option>' +
+    subtypes.map(s => `<option value="${s}">${s}</option>`).join('');
+  // Clear existing task rows
+  document.getElementById('mp-stage-checks').innerHTML = '';
+}
+
+function mpApplyTemplate() {
+  const code    = document.getElementById('mp-tmpl-code').value;
+  const subtype = document.getElementById('mp-tmpl-subtype').value;
+  if (!code || !subtype) return;
+  const tpl = getTaskTemplates().find(t => t.item_code === code && t.sub_type === subtype);
+  if (!tpl) { showToast('warning', 'No Template', `No template found for ${code} / ${subtype}.`); return; }
+
+  const tasks = Array.isArray(tpl.tasks) ? tpl.tasks : [];
+
+  // Populate the task rows in the modal
+  document.getElementById('mp-stage-checks').innerHTML = '';
+  tasks.forEach(taskName => mpAddTaskRow(String(taskName).toUpperCase(), false));
+
+  // Show preview
+  const preview = document.getElementById('mp-tmpl-preview');
+  if (preview) {
+    preview.innerHTML = tasks.map((t,i) =>
+      `<span style="display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:99px;background:var(--accent3);color:var(--accent);font-family:'DM Mono',monospace;font-size:10px;margin:2px;">
+        <span style="opacity:0.6;">${i+1}</span> ${t}
+      </span>`
+    ).join('<span style="color:var(--text3);margin:0 2px;font-size:10px;">→</span>');
+    preview.style.display = 'block';
+  }
+
+  showToast('success', 'Template Applied', `${tasks.length} tasks loaded for ${code} / ${subtype}.`);
+}
+// Workers Masterplan — render, add/edit/delete, GSheet sync
+// ══════════════════════════════════════════════════════════════
+
+const _wmpPage = { current: 1 };
+const WMP_PAGE_SIZE = 25;
+let _wmpEditId = null;
+
+const WMP_STATUS_STYLES = {
+  'scheduled':   { badge: 'badge-blue',  label: 'Scheduled'   },
+  'in-progress': { badge: 'badge-gold',  label: 'In Progress' },
+  'done':        { badge: 'badge-green', label: 'Done'        },
+  'cancelled':   { badge: 'badge-red',   label: 'Cancelled'   }
+};
+
+function renderWMP() {
+  const entries  = getWMPEntries();
+  const workmen  = getWorkmen();
+  const projects = getProjects();
+
+  // Populate filter dropdowns
+  const projSel   = document.getElementById('wmp-filter-project');
+  const jobSel    = document.getElementById('wmp-filter-job');
+  const workerSel = document.getElementById('wmp-filter-worker');
+  const prevProj   = projSel.value;
+  const prevJob    = jobSel.value;
+  const prevWorker = workerSel.value;
+
+  const allProjects = [...new Set(entries.map(e => e.project).filter(Boolean))].sort();
+  const allJobs     = [...new Set(workmen.map(w => w.job).filter(Boolean))].sort();
+  const allWorkers  = [...new Set(entries.map(e => e.worker_name).filter(Boolean))].sort();
+
+  projSel.innerHTML   = '<option value="">All Projects</option>'   + allProjects.map(p => `<option${p===prevProj?' selected':''}>${p}</option>`).join('');
+  jobSel.innerHTML    = '<option value="">All Jobs</option>'       + allJobs.map(j => `<option${j===prevJob?' selected':''}>${j}</option>`).join('');
+  workerSel.innerHTML = '<option value="">All Workers</option>'    + allWorkers.map(w => `<option${w===prevWorker?' selected':''}>${w}</option>`).join('');
+
+  // Apply filters
+  const fProj   = projSel.value;
+  const fJob    = jobSel.value;
+  const fWorker = workerSel.value;
+  const fFrom   = document.getElementById('wmp-filter-from').value;
+  const fTo     = document.getElementById('wmp-filter-to').value;
+  const fSearch = (document.getElementById('wmp-search').value || '').toLowerCase();
+
+  let filtered = entries;
+  if (fProj)   filtered = filtered.filter(e => e.project === fProj);
+  if (fJob)    filtered = filtered.filter(e => e.job === fJob);
+  if (fWorker) filtered = filtered.filter(e => e.worker_name === fWorker);
+  if (fFrom)   filtered = filtered.filter(e => e.date >= fFrom);
+  if (fTo)     filtered = filtered.filter(e => e.date <= fTo);
+  if (fSearch) filtered = filtered.filter(e =>
+    (e.description||'').toLowerCase().includes(fSearch) ||
+    (e.worker_name||'').toLowerCase().includes(fSearch) ||
+    (e.project||'').toLowerCase().includes(fSearch));
+
+  // Sort by date desc
+  filtered = [...filtered].sort((a,b) => (b.date||'').localeCompare(a.date||''));
+
+  // Stat cards
+  const total      = entries.length;
+  const done       = entries.filter(e => e.status === 'done').length;
+  const inProgress = entries.filter(e => e.status === 'in-progress').length;
+  const scheduled  = entries.filter(e => e.status === 'scheduled').length;
+  const statsEl = document.getElementById('wmp-stats');
+  if (statsEl) statsEl.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--blue-bg);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <div class="stat-label">Total Entries</div>
+      <div class="stat-value">${total}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--green-bg);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="stat-label">Done</div>
+      <div class="stat-value" style="color:var(--green);">${done}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--gold-bg);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="stat-label">In Progress</div>
+      <div class="stat-value" style="color:var(--gold);">${inProgress}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--blue-bg);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div class="stat-label">Scheduled</div>
+      <div class="stat-value" style="color:var(--blue);">${scheduled}</div>
+    </div>`;
+
+  // Table
+  const totalCount = filtered.length;
+  const start = (_wmpPage.current - 1) * WMP_PAGE_SIZE;
+  const page  = filtered.slice(start, start + WMP_PAGE_SIZE);
+
+  const tbody = document.getElementById('wmp-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = page.length === 0
+    ? `<tr><td colspan="7" class="text-center" style="padding:40px;color:var(--text3);">No entries yet. Click "Add Entry" to begin.</td></tr>`
+    : page.map(e => {
+        const st = WMP_STATUS_STYLES[e.status] || WMP_STATUS_STYLES['scheduled'];
+        return `<tr>
+          <td class="mono-cell" style="font-size:12px;">${e.date||'-'}</td>
+          <td style="font-weight:600;">${e.project||'-'}</td>
+          <td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${e.description||''}">${e.description||'-'}</td>
+          <td><span class="tag">${e.job||'-'}</span></td>
+          <td style="font-weight:600;">${e.worker_name||'-'}</td>
+          <td><span class="badge ${st.badge}">${st.label}</span></td>
+          <td class="no-print" style="white-space:nowrap;">
+            <button class="btn btn-outline btn-sm" onclick="wmpEditEntry('${e.id}')">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="wmpDeleteEntry('${e.id}')">✕</button>
+          </td>
+        </tr>`;
+      }).join('');
+
+  renderPagination('wmp-pagination', totalCount, _wmpPage.current, p => { _wmpPage.current = p; renderWMP(); });
+}
+
+// ── Modal helpers ──
+function _wmpPopulateModal() {
+  const workmen  = getWorkmen();
+  const projects = getProjects();
+
+  // Projects dropdown
+  const projSel = document.getElementById('wmp-project');
+  const prevProj = projSel.value;
+  projSel.innerHTML = '<option value="">Select project...</option>' +
+    projects.map(p => `<option value="${p.name}"${p.name===prevProj?' selected':''}>${p.name}</option>`).join('');
+
+  // Jobs dropdown — unique jobs from workmen
+  const jobs = [...new Set(workmen.map(w => w.job).filter(Boolean))].sort();
+  const jobSel = document.getElementById('wmp-job');
+  const prevJob = jobSel.value;
+  jobSel.innerHTML = '<option value="">Select job...</option>' +
+    jobs.map(j => `<option value="${j}"${j===prevJob?' selected':''}>${j}</option>`).join('');
+
+  // Workers filtered by selected job
+  wmpFilterWorkers();
+}
+
+function wmpFilterWorkers() {
+  const selectedJob = document.getElementById('wmp-job').value;
+  const workmen = getWorkmen();
+  const workerSel = document.getElementById('wmp-worker');
+  const prevWorker = workerSel.value;
+
+  const filtered = selectedJob
+    ? workmen.filter(w => w.job === selectedJob)
+    : workmen;
+
+  workerSel.innerHTML = '<option value="">Select worker...</option>' +
+    filtered.map(w => `<option value="${w.name}"${w.name===prevWorker?' selected':''}>${w.name}</option>`).join('');
+}
+
+function wmpOpenAddModal() {
+  _wmpEditId = null;
+  document.getElementById('wmp-modal-title').textContent = 'Add Workers Plan Entry';
+  document.getElementById('wmp-save-btn').textContent = 'Save Entry';
+  document.getElementById('wmp-date').value = new Date().toISOString().substring(0,10);
+  document.getElementById('wmp-project').value = '';
+  document.getElementById('wmp-desc').value = '';
+  document.getElementById('wmp-job').value = '';
+  document.getElementById('wmp-status').value = 'scheduled';
+  document.getElementById('wmp-notes').value = '';
+  _wmpPopulateModal();
+  document.getElementById('wmp-modal').classList.add('open');
+}
+
+function wmpEditEntry(id) {
+  const entry = getWMPEntries().find(e => e.id === id);
+  if (!entry) return;
+  _wmpEditId = id;
+  document.getElementById('wmp-modal-title').textContent = 'Edit Workers Plan Entry';
+  document.getElementById('wmp-save-btn').textContent = 'Update Entry';
+  document.getElementById('wmp-date').value = entry.date || '';
+  document.getElementById('wmp-desc').value = entry.description || '';
+  document.getElementById('wmp-status').value = entry.status || 'scheduled';
+  document.getElementById('wmp-notes').value = entry.notes || '';
+
+  // Populate selects first, then set values
+  _wmpPopulateModal();
+  document.getElementById('wmp-project').value = entry.project || '';
+  document.getElementById('wmp-job').value = entry.job || '';
+  wmpFilterWorkers();
+  document.getElementById('wmp-worker').value = entry.worker_name || '';
+
+  document.getElementById('wmp-modal').classList.add('open');
+}
+
+function wmpSaveEntry() {
+  const date   = document.getElementById('wmp-date').value;
+  const proj   = document.getElementById('wmp-project').value;
+  const desc   = document.getElementById('wmp-desc').value.trim();
+  const job    = document.getElementById('wmp-job').value;
+  const worker = document.getElementById('wmp-worker').value;
+  const status = document.getElementById('wmp-status').value;
+  const notes  = document.getElementById('wmp-notes').value.trim();
+
+  if (!date)   { showToast('error', 'Date Required', 'Please select a date.');        return; }
+  if (!proj)   { showToast('error', 'Project Required', 'Please select a project.');  return; }
+  if (!desc)   { showToast('error', 'Description Required', 'Enter a work description.'); return; }
+  if (!job)    { showToast('error', 'Job Required', 'Please select a job.');          return; }
+  if (!worker) { showToast('error', 'Worker Required', 'Please select a worker.');    return; }
+
+  // ── Conflict check: same worker, same date, different project ──
+  const entries = getWMPEntries();
+  const conflict = entries.find(e =>
+    e.worker_name === worker &&
+    e.date === date &&
+    e.project !== proj &&
+    e.id !== (_wmpEditId || '')
+  );
+  if (conflict) {
+    const proceed = confirm(
+      `⚠️ Scheduling Conflict\n\n` +
+      `${worker} is already scheduled on project "${conflict.project}" on ${date}.\n\n` +
+      `Are you sure you want to proceed?`
+    );
+    if (!proceed) return;
+  }
+
+  const entry = { id: _wmpEditId || 'wmp_' + Date.now(), date, project: proj, description: desc, job, worker_name: worker, status, notes };
+
+  if (_wmpEditId) {
+    const idx = entries.findIndex(e => e.id === _wmpEditId);
+    if (idx >= 0) entries[idx] = entry;
+    showToast('success', 'Updated', 'Entry updated.');
+  } else {
+    entries.push(entry);
+    showToast('success', 'Added', 'Entry added to Workers Plan.');
+  }
+
+  saveWMPEntries(entries);
+  closeModal('wmp-modal');
+  renderWMP();
+}
+
+function wmpDeleteEntry(id) {
+  const entry = getWMPEntries().find(e => e.id === id);
+  if (!confirm(`Delete this entry for "${entry?.worker_name}" on ${entry?.date}?`)) return;
+  saveWMPEntries(getWMPEntries().filter(e => e.id !== id));
+  renderWMP();
+  showToast('success', 'Deleted', 'Entry removed.');
 }
 
 
